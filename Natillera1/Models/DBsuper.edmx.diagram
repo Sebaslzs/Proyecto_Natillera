@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="66d1913d646e493ea7e0d18a9c351aa6" Name="Diagram1">
+        <EntityTypeShape EntityType="NatilleraDBModel.Ahorro" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NatilleraDBModel.Cliente" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="NatilleraDBModel.CuentasBancaria" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NatilleraDBModel.Deposito" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NatilleraDBModel.EstadoPrestamo" Width="1.5" PointX="3.75" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NatilleraDBModel.HistorialCambio" Width="1.5" PointX="5.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NatilleraDBModel.Movimiento" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NatilleraDBModel.Notificacione" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NatilleraDBModel.PagoPrestamo" Width="1.5" PointX="6" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NatilleraDBModel.Prestamo" Width="1.5" PointX="6" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NatilleraDBModel.ProgresoAhorro" Width="1.5" PointX="8.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NatilleraDBModel.ProgresoPrestamo" Width="1.5" PointX="8.25" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NatilleraDBModel.RolesUsuario" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NatilleraDBModel.TasaIntere" Width="1.5" PointX="3.75" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NatilleraDBModel.Usuario" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="NatilleraDBModel.FK__Ahorros__cliente__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="NatilleraDBModel.FK__Deposito__ahorro__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="NatilleraDBModel.FK__Historial__ahorr__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="NatilleraDBModel.FK__ProgresoA__ahorr__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="NatilleraDBModel.FK__CuentasBa__clien__160F4887" ManuallyRouted="false" />
+        <AssociationConnector Association="NatilleraDBModel.FK__Deposito__client__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="NatilleraDBModel.FK__Movimient__clien__03F0984C" ManuallyRouted="false" />
+        <AssociationConnector Association="NatilleraDBModel.FK__Notificac__clien__7F2BE32F" ManuallyRouted="false" />
+        <AssociationConnector Association="NatilleraDBModel.FK__PagoPrest__clien__4F47C5E3" ManuallyRouted="false" />
+        <AssociationConnector Association="NatilleraDBModel.FK__Prestamos__clien__32AB8735" ManuallyRouted="false" />
+        <AssociationConnector Association="NatilleraDBModel.FK__ProgresoA__clien__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="NatilleraDBModel.FK__ProgresoP__clien__55009F39" ManuallyRouted="false" />
+        <AssociationConnector Association="NatilleraDBModel.FK__Prestamos__estad__3493CFA7" ManuallyRouted="false" />
+        <AssociationConnector Association="NatilleraDBModel.FK__PagoPrest__prest__4E53A1AA" ManuallyRouted="false" />
+        <AssociationConnector Association="NatilleraDBModel.FK__Prestamos__tasaI__339FAB6E" ManuallyRouted="false" />
+        <AssociationConnector Association="NatilleraDBModel.FK__ProgresoP__prest__540C7B00" ManuallyRouted="false" />
+        <AssociationConnector Association="NatilleraDBModel.FK__Usuarios__rolID__1BC821DD" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

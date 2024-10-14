@@ -1,0 +1,1146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NatilleraDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ahorros">
+          <Key>
+            <PropertyRef Name="ahorroID" />
+          </Key>
+          <Property Name="ahorroID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clienteID" Type="int" />
+          <Property Name="montoMensual" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="fechaInicial" Type="date" Nullable="false" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="clienteID" />
+          </Key>
+          <Property Name="clienteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="identificacion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="100" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CuentasBancarias">
+          <Key>
+            <PropertyRef Name="cuentaID" />
+          </Key>
+          <Property Name="cuentaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clienteID" Type="int" />
+          <Property Name="numeroCuenta" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="banco" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="saldo" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Deposito">
+          <Key>
+            <PropertyRef Name="depositoID" />
+          </Key>
+          <Property Name="depositoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ahorroID" Type="int" />
+          <Property Name="clienteID" Type="int" />
+          <Property Name="monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EstadoPrestamo">
+          <Key>
+            <PropertyRef Name="estadoPrestamoID" />
+          </Key>
+          <Property Name="estadoPrestamoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistorialCambios">
+          <Key>
+            <PropertyRef Name="cambioID" />
+          </Key>
+          <Property Name="cambioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ahorroID" Type="int" />
+          <Property Name="descripcion" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="fechaCambio" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movimientos">
+          <Key>
+            <PropertyRef Name="movimientoID" />
+          </Key>
+          <Property Name="movimientoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clienteID" Type="int" />
+          <Property Name="tipoMovimiento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaMovimiento" Type="date" Nullable="false" />
+          <Property Name="monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Notificaciones">
+          <Key>
+            <PropertyRef Name="notificacionID" />
+          </Key>
+          <Property Name="notificacionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clienteID" Type="int" />
+          <Property Name="tipoNotificacion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaEnvio" Type="date" Nullable="false" />
+          <Property Name="mensaje" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PagoPrestamos">
+          <Key>
+            <PropertyRef Name="pagoID" />
+          </Key>
+          <Property Name="pagoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prestamoID" Type="int" />
+          <Property Name="clienteID" Type="int" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Prestamos">
+          <Key>
+            <PropertyRef Name="prestamoID" />
+          </Key>
+          <Property Name="prestamoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clienteID" Type="int" />
+          <Property Name="fechaSolicitud" Type="date" Nullable="false" />
+          <Property Name="montoSolicitado" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="tasaInteresID" Type="int" />
+          <Property Name="estadoPrestamoID" Type="int" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProgresoAhorro">
+          <Key>
+            <PropertyRef Name="ahorroID" />
+          </Key>
+          <Property Name="ahorroID" Type="int" Nullable="false" />
+          <Property Name="clienteID" Type="int" />
+          <Property Name="numeroPagos" Type="int" Nullable="false" />
+          <Property Name="totalMonto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProgresoPrestamos">
+          <Key>
+            <PropertyRef Name="prestamoID" />
+          </Key>
+          <Property Name="prestamoID" Type="int" Nullable="false" />
+          <Property Name="clienteID" Type="int" />
+          <Property Name="montoPendiente" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="montoPagado" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RolesUsuario">
+          <Key>
+            <PropertyRef Name="rolID" />
+          </Key>
+          <Property Name="rolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TasaInteres">
+          <Key>
+            <PropertyRef Name="tasaInteresID" />
+          </Key>
+          <Property Name="tasaInteresID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="porcentaje" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="usuarioID" />
+          </Key>
+          <Property Name="usuarioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreUsuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="rolID" Type="int" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__Ahorros__cliente__5070F446">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="Ahorros" Type="Self.Ahorros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="clienteID" />
+            </Principal>
+            <Dependent Role="Ahorros">
+              <PropertyRef Name="clienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CuentasBa__clien__160F4887">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="CuentasBancarias" Type="Self.CuentasBancarias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="clienteID" />
+            </Principal>
+            <Dependent Role="CuentasBancarias">
+              <PropertyRef Name="clienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Deposito__ahorro__5812160E">
+          <End Role="Ahorros" Type="Self.Ahorros" Multiplicity="0..1" />
+          <End Role="Deposito" Type="Self.Deposito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ahorros">
+              <PropertyRef Name="ahorroID" />
+            </Principal>
+            <Dependent Role="Deposito">
+              <PropertyRef Name="ahorroID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Deposito__client__59063A47">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="Deposito" Type="Self.Deposito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="clienteID" />
+            </Principal>
+            <Dependent Role="Deposito">
+              <PropertyRef Name="clienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Historial__ahorr__534D60F1">
+          <End Role="Ahorros" Type="Self.Ahorros" Multiplicity="0..1" />
+          <End Role="HistorialCambios" Type="Self.HistorialCambios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ahorros">
+              <PropertyRef Name="ahorroID" />
+            </Principal>
+            <Dependent Role="HistorialCambios">
+              <PropertyRef Name="ahorroID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__clien__03F0984C">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="Movimientos" Type="Self.Movimientos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="clienteID" />
+            </Principal>
+            <Dependent Role="Movimientos">
+              <PropertyRef Name="clienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificac__clien__7F2BE32F">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="clienteID" />
+            </Principal>
+            <Dependent Role="Notificaciones">
+              <PropertyRef Name="clienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PagoPrest__clien__4F47C5E3">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="PagoPrestamos" Type="Self.PagoPrestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="clienteID" />
+            </Principal>
+            <Dependent Role="PagoPrestamos">
+              <PropertyRef Name="clienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PagoPrest__prest__4E53A1AA">
+          <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="0..1" />
+          <End Role="PagoPrestamos" Type="Self.PagoPrestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prestamos">
+              <PropertyRef Name="prestamoID" />
+            </Principal>
+            <Dependent Role="PagoPrestamos">
+              <PropertyRef Name="prestamoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Prestamos__clien__32AB8735">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="clienteID" />
+            </Principal>
+            <Dependent Role="Prestamos">
+              <PropertyRef Name="clienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Prestamos__estad__3493CFA7">
+          <End Role="EstadoPrestamo" Type="Self.EstadoPrestamo" Multiplicity="0..1" />
+          <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoPrestamo">
+              <PropertyRef Name="estadoPrestamoID" />
+            </Principal>
+            <Dependent Role="Prestamos">
+              <PropertyRef Name="estadoPrestamoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Prestamos__tasaI__339FAB6E">
+          <End Role="TasaInteres" Type="Self.TasaInteres" Multiplicity="0..1" />
+          <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TasaInteres">
+              <PropertyRef Name="tasaInteresID" />
+            </Principal>
+            <Dependent Role="Prestamos">
+              <PropertyRef Name="tasaInteresID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProgresoA__ahorr__5DCAEF64">
+          <End Role="Ahorros" Type="Self.Ahorros" Multiplicity="1" />
+          <End Role="ProgresoAhorro" Type="Self.ProgresoAhorro" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Ahorros">
+              <PropertyRef Name="ahorroID" />
+            </Principal>
+            <Dependent Role="ProgresoAhorro">
+              <PropertyRef Name="ahorroID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProgresoA__clien__5EBF139D">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="ProgresoAhorro" Type="Self.ProgresoAhorro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="clienteID" />
+            </Principal>
+            <Dependent Role="ProgresoAhorro">
+              <PropertyRef Name="clienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProgresoP__clien__55009F39">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="ProgresoPrestamos" Type="Self.ProgresoPrestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="clienteID" />
+            </Principal>
+            <Dependent Role="ProgresoPrestamos">
+              <PropertyRef Name="clienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProgresoP__prest__540C7B00">
+          <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="1" />
+          <End Role="ProgresoPrestamos" Type="Self.ProgresoPrestamos" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Prestamos">
+              <PropertyRef Name="prestamoID" />
+            </Principal>
+            <Dependent Role="ProgresoPrestamos">
+              <PropertyRef Name="prestamoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__rolID__1BC821DD">
+          <End Role="RolesUsuario" Type="Self.RolesUsuario" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RolesUsuario">
+              <PropertyRef Name="rolID" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="rolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NatilleraDBModelStoreContainer">
+          <EntitySet Name="Ahorros" EntityType="Self.Ahorros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CuentasBancarias" EntityType="Self.CuentasBancarias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Deposito" EntityType="Self.Deposito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstadoPrestamo" EntityType="Self.EstadoPrestamo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistorialCambios" EntityType="Self.HistorialCambios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movimientos" EntityType="Self.Movimientos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notificaciones" EntityType="Self.Notificaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PagoPrestamos" EntityType="Self.PagoPrestamos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prestamos" EntityType="Self.Prestamos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProgresoAhorro" EntityType="Self.ProgresoAhorro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProgresoPrestamos" EntityType="Self.ProgresoPrestamos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RolesUsuario" EntityType="Self.RolesUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TasaInteres" EntityType="Self.TasaInteres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Ahorros__cliente__5070F446" Association="Self.FK__Ahorros__cliente__5070F446">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Ahorros" EntitySet="Ahorros" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CuentasBa__clien__160F4887" Association="Self.FK__CuentasBa__clien__160F4887">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="CuentasBancarias" EntitySet="CuentasBancarias" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Deposito__ahorro__5812160E" Association="Self.FK__Deposito__ahorro__5812160E">
+            <End Role="Ahorros" EntitySet="Ahorros" />
+            <End Role="Deposito" EntitySet="Deposito" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Deposito__client__59063A47" Association="Self.FK__Deposito__client__59063A47">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Deposito" EntitySet="Deposito" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Historial__ahorr__534D60F1" Association="Self.FK__Historial__ahorr__534D60F1">
+            <End Role="Ahorros" EntitySet="Ahorros" />
+            <End Role="HistorialCambios" EntitySet="HistorialCambios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__clien__03F0984C" Association="Self.FK__Movimient__clien__03F0984C">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Movimientos" EntitySet="Movimientos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificac__clien__7F2BE32F" Association="Self.FK__Notificac__clien__7F2BE32F">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Notificaciones" EntitySet="Notificaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PagoPrest__clien__4F47C5E3" Association="Self.FK__PagoPrest__clien__4F47C5E3">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="PagoPrestamos" EntitySet="PagoPrestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PagoPrest__prest__4E53A1AA" Association="Self.FK__PagoPrest__prest__4E53A1AA">
+            <End Role="Prestamos" EntitySet="Prestamos" />
+            <End Role="PagoPrestamos" EntitySet="PagoPrestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Prestamos__clien__32AB8735" Association="Self.FK__Prestamos__clien__32AB8735">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Prestamos" EntitySet="Prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Prestamos__estad__3493CFA7" Association="Self.FK__Prestamos__estad__3493CFA7">
+            <End Role="EstadoPrestamo" EntitySet="EstadoPrestamo" />
+            <End Role="Prestamos" EntitySet="Prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Prestamos__tasaI__339FAB6E" Association="Self.FK__Prestamos__tasaI__339FAB6E">
+            <End Role="TasaInteres" EntitySet="TasaInteres" />
+            <End Role="Prestamos" EntitySet="Prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProgresoA__ahorr__5DCAEF64" Association="Self.FK__ProgresoA__ahorr__5DCAEF64">
+            <End Role="Ahorros" EntitySet="Ahorros" />
+            <End Role="ProgresoAhorro" EntitySet="ProgresoAhorro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProgresoA__clien__5EBF139D" Association="Self.FK__ProgresoA__clien__5EBF139D">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="ProgresoAhorro" EntitySet="ProgresoAhorro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProgresoP__clien__55009F39" Association="Self.FK__ProgresoP__clien__55009F39">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="ProgresoPrestamos" EntitySet="ProgresoPrestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProgresoP__prest__540C7B00" Association="Self.FK__ProgresoP__prest__540C7B00">
+            <End Role="Prestamos" EntitySet="Prestamos" />
+            <End Role="ProgresoPrestamos" EntitySet="ProgresoPrestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__rolID__1BC821DD" Association="Self.FK__Usuarios__rolID__1BC821DD">
+            <End Role="RolesUsuario" EntitySet="RolesUsuario" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NatilleraDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ahorro">
+          <Key>
+            <PropertyRef Name="ahorroID" />
+          </Key>
+          <Property Name="ahorroID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clienteID" Type="Int32" />
+          <Property Name="montoMensual" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="fechaInicial" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Ahorros__cliente__5070F446" FromRole="Ahorros" ToRole="Clientes" />
+          <NavigationProperty Name="Depositoes" Relationship="Self.FK__Deposito__ahorro__5812160E" FromRole="Ahorros" ToRole="Deposito" />
+          <NavigationProperty Name="HistorialCambios" Relationship="Self.FK__Historial__ahorr__534D60F1" FromRole="Ahorros" ToRole="HistorialCambios" />
+          <NavigationProperty Name="ProgresoAhorro" Relationship="Self.FK__ProgresoA__ahorr__5DCAEF64" FromRole="Ahorros" ToRole="ProgresoAhorro" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="clienteID" />
+          </Key>
+          <Property Name="clienteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="identificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Ahorros" Relationship="Self.FK__Ahorros__cliente__5070F446" FromRole="Clientes" ToRole="Ahorros" />
+          <NavigationProperty Name="CuentasBancarias" Relationship="Self.FK__CuentasBa__clien__160F4887" FromRole="Clientes" ToRole="CuentasBancarias" />
+          <NavigationProperty Name="Depositoes" Relationship="Self.FK__Deposito__client__59063A47" FromRole="Clientes" ToRole="Deposito" />
+          <NavigationProperty Name="Movimientos" Relationship="Self.FK__Movimient__clien__03F0984C" FromRole="Clientes" ToRole="Movimientos" />
+          <NavigationProperty Name="Notificaciones" Relationship="Self.FK__Notificac__clien__7F2BE32F" FromRole="Clientes" ToRole="Notificaciones" />
+          <NavigationProperty Name="PagoPrestamos" Relationship="Self.FK__PagoPrest__clien__4F47C5E3" FromRole="Clientes" ToRole="PagoPrestamos" />
+          <NavigationProperty Name="Prestamos" Relationship="Self.FK__Prestamos__clien__32AB8735" FromRole="Clientes" ToRole="Prestamos" />
+          <NavigationProperty Name="ProgresoAhorroes" Relationship="Self.FK__ProgresoA__clien__5EBF139D" FromRole="Clientes" ToRole="ProgresoAhorro" />
+          <NavigationProperty Name="ProgresoPrestamos" Relationship="Self.FK__ProgresoP__clien__55009F39" FromRole="Clientes" ToRole="ProgresoPrestamos" />
+        </EntityType>
+        <EntityType Name="CuentasBancaria">
+          <Key>
+            <PropertyRef Name="cuentaID" />
+          </Key>
+          <Property Name="cuentaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clienteID" Type="Int32" />
+          <Property Name="numeroCuenta" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="banco" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="saldo" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__CuentasBa__clien__160F4887" FromRole="CuentasBancarias" ToRole="Clientes" />
+        </EntityType>
+        <EntityType Name="Deposito">
+          <Key>
+            <PropertyRef Name="depositoID" />
+          </Key>
+          <Property Name="depositoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ahorroID" Type="Int32" />
+          <Property Name="clienteID" Type="Int32" />
+          <Property Name="monto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Ahorro" Relationship="Self.FK__Deposito__ahorro__5812160E" FromRole="Deposito" ToRole="Ahorros" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Deposito__client__59063A47" FromRole="Deposito" ToRole="Clientes" />
+        </EntityType>
+        <EntityType Name="EstadoPrestamo">
+          <Key>
+            <PropertyRef Name="estadoPrestamoID" />
+          </Key>
+          <Property Name="estadoPrestamoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Prestamos" Relationship="Self.FK__Prestamos__estad__3493CFA7" FromRole="EstadoPrestamo" ToRole="Prestamos" />
+        </EntityType>
+        <EntityType Name="HistorialCambio">
+          <Key>
+            <PropertyRef Name="cambioID" />
+          </Key>
+          <Property Name="cambioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ahorroID" Type="Int32" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaCambio" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Ahorro" Relationship="Self.FK__Historial__ahorr__534D60F1" FromRole="HistorialCambios" ToRole="Ahorros" />
+        </EntityType>
+        <EntityType Name="Movimiento">
+          <Key>
+            <PropertyRef Name="movimientoID" />
+          </Key>
+          <Property Name="movimientoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clienteID" Type="Int32" />
+          <Property Name="tipoMovimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaMovimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="monto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Movimient__clien__03F0984C" FromRole="Movimientos" ToRole="Clientes" />
+        </EntityType>
+        <EntityType Name="Notificacione">
+          <Key>
+            <PropertyRef Name="notificacionID" />
+          </Key>
+          <Property Name="notificacionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clienteID" Type="Int32" />
+          <Property Name="tipoNotificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaEnvio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="mensaje" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Notificac__clien__7F2BE32F" FromRole="Notificaciones" ToRole="Clientes" />
+        </EntityType>
+        <EntityType Name="PagoPrestamo">
+          <Key>
+            <PropertyRef Name="pagoID" />
+          </Key>
+          <Property Name="pagoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="prestamoID" Type="Int32" />
+          <Property Name="clienteID" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="monto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__PagoPrest__clien__4F47C5E3" FromRole="PagoPrestamos" ToRole="Clientes" />
+          <NavigationProperty Name="Prestamo" Relationship="Self.FK__PagoPrest__prest__4E53A1AA" FromRole="PagoPrestamos" ToRole="Prestamos" />
+        </EntityType>
+        <EntityType Name="Prestamo">
+          <Key>
+            <PropertyRef Name="prestamoID" />
+          </Key>
+          <Property Name="prestamoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clienteID" Type="Int32" />
+          <Property Name="fechaSolicitud" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="montoSolicitado" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="tasaInteresID" Type="Int32" />
+          <Property Name="estadoPrestamoID" Type="Int32" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Prestamos__clien__32AB8735" FromRole="Prestamos" ToRole="Clientes" />
+          <NavigationProperty Name="EstadoPrestamo" Relationship="Self.FK__Prestamos__estad__3493CFA7" FromRole="Prestamos" ToRole="EstadoPrestamo" />
+          <NavigationProperty Name="PagoPrestamos" Relationship="Self.FK__PagoPrest__prest__4E53A1AA" FromRole="Prestamos" ToRole="PagoPrestamos" />
+          <NavigationProperty Name="TasaIntere" Relationship="Self.FK__Prestamos__tasaI__339FAB6E" FromRole="Prestamos" ToRole="TasaInteres" />
+          <NavigationProperty Name="ProgresoPrestamo" Relationship="Self.FK__ProgresoP__prest__540C7B00" FromRole="Prestamos" ToRole="ProgresoPrestamos" />
+        </EntityType>
+        <EntityType Name="ProgresoAhorro">
+          <Key>
+            <PropertyRef Name="ahorroID" />
+          </Key>
+          <Property Name="ahorroID" Type="Int32" Nullable="false" />
+          <Property Name="clienteID" Type="Int32" />
+          <Property Name="numeroPagos" Type="Int32" Nullable="false" />
+          <Property Name="totalMonto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Ahorro" Relationship="Self.FK__ProgresoA__ahorr__5DCAEF64" FromRole="ProgresoAhorro" ToRole="Ahorros" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__ProgresoA__clien__5EBF139D" FromRole="ProgresoAhorro" ToRole="Clientes" />
+        </EntityType>
+        <EntityType Name="ProgresoPrestamo">
+          <Key>
+            <PropertyRef Name="prestamoID" />
+          </Key>
+          <Property Name="prestamoID" Type="Int32" Nullable="false" />
+          <Property Name="clienteID" Type="Int32" />
+          <Property Name="montoPendiente" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="montoPagado" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__ProgresoP__clien__55009F39" FromRole="ProgresoPrestamos" ToRole="Clientes" />
+          <NavigationProperty Name="Prestamo" Relationship="Self.FK__ProgresoP__prest__540C7B00" FromRole="ProgresoPrestamos" ToRole="Prestamos" />
+        </EntityType>
+        <EntityType Name="RolesUsuario">
+          <Key>
+            <PropertyRef Name="rolID" />
+          </Key>
+          <Property Name="rolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__rolID__1BC821DD" FromRole="RolesUsuario" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="TasaIntere">
+          <Key>
+            <PropertyRef Name="tasaInteresID" />
+          </Key>
+          <Property Name="tasaInteresID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="porcentaje" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Prestamos" Relationship="Self.FK__Prestamos__tasaI__339FAB6E" FromRole="TasaInteres" ToRole="Prestamos" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="usuarioID" />
+          </Key>
+          <Property Name="usuarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rolID" Type="Int32" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="RolesUsuario" Relationship="Self.FK__Usuarios__rolID__1BC821DD" FromRole="Usuarios" ToRole="RolesUsuario" />
+        </EntityType>
+        <Association Name="FK__Ahorros__cliente__5070F446">
+          <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Ahorros" Type="Self.Ahorro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="clienteID" />
+            </Principal>
+            <Dependent Role="Ahorros">
+              <PropertyRef Name="clienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Deposito__ahorro__5812160E">
+          <End Role="Ahorros" Type="Self.Ahorro" Multiplicity="0..1" />
+          <End Role="Deposito" Type="Self.Deposito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ahorros">
+              <PropertyRef Name="ahorroID" />
+            </Principal>
+            <Dependent Role="Deposito">
+              <PropertyRef Name="ahorroID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Historial__ahorr__534D60F1">
+          <End Role="Ahorros" Type="Self.Ahorro" Multiplicity="0..1" />
+          <End Role="HistorialCambios" Type="Self.HistorialCambio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ahorros">
+              <PropertyRef Name="ahorroID" />
+            </Principal>
+            <Dependent Role="HistorialCambios">
+              <PropertyRef Name="ahorroID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProgresoA__ahorr__5DCAEF64">
+          <End Role="Ahorros" Type="Self.Ahorro" Multiplicity="1" />
+          <End Role="ProgresoAhorro" Type="Self.ProgresoAhorro" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Ahorros">
+              <PropertyRef Name="ahorroID" />
+            </Principal>
+            <Dependent Role="ProgresoAhorro">
+              <PropertyRef Name="ahorroID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CuentasBa__clien__160F4887">
+          <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="CuentasBancarias" Type="Self.CuentasBancaria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="clienteID" />
+            </Principal>
+            <Dependent Role="CuentasBancarias">
+              <PropertyRef Name="clienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Deposito__client__59063A47">
+          <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Deposito" Type="Self.Deposito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="clienteID" />
+            </Principal>
+            <Dependent Role="Deposito">
+              <PropertyRef Name="clienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__clien__03F0984C">
+          <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Movimientos" Type="Self.Movimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="clienteID" />
+            </Principal>
+            <Dependent Role="Movimientos">
+              <PropertyRef Name="clienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificac__clien__7F2BE32F">
+          <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Notificaciones" Type="Self.Notificacione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="clienteID" />
+            </Principal>
+            <Dependent Role="Notificaciones">
+              <PropertyRef Name="clienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PagoPrest__clien__4F47C5E3">
+          <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="PagoPrestamos" Type="Self.PagoPrestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="clienteID" />
+            </Principal>
+            <Dependent Role="PagoPrestamos">
+              <PropertyRef Name="clienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Prestamos__clien__32AB8735">
+          <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Prestamos" Type="Self.Prestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="clienteID" />
+            </Principal>
+            <Dependent Role="Prestamos">
+              <PropertyRef Name="clienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProgresoA__clien__5EBF139D">
+          <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="ProgresoAhorro" Type="Self.ProgresoAhorro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="clienteID" />
+            </Principal>
+            <Dependent Role="ProgresoAhorro">
+              <PropertyRef Name="clienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProgresoP__clien__55009F39">
+          <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="ProgresoPrestamos" Type="Self.ProgresoPrestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="clienteID" />
+            </Principal>
+            <Dependent Role="ProgresoPrestamos">
+              <PropertyRef Name="clienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Prestamos__estad__3493CFA7">
+          <End Role="EstadoPrestamo" Type="Self.EstadoPrestamo" Multiplicity="0..1" />
+          <End Role="Prestamos" Type="Self.Prestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoPrestamo">
+              <PropertyRef Name="estadoPrestamoID" />
+            </Principal>
+            <Dependent Role="Prestamos">
+              <PropertyRef Name="estadoPrestamoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PagoPrest__prest__4E53A1AA">
+          <End Role="Prestamos" Type="Self.Prestamo" Multiplicity="0..1" />
+          <End Role="PagoPrestamos" Type="Self.PagoPrestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prestamos">
+              <PropertyRef Name="prestamoID" />
+            </Principal>
+            <Dependent Role="PagoPrestamos">
+              <PropertyRef Name="prestamoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Prestamos__tasaI__339FAB6E">
+          <End Role="TasaInteres" Type="Self.TasaIntere" Multiplicity="0..1" />
+          <End Role="Prestamos" Type="Self.Prestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TasaInteres">
+              <PropertyRef Name="tasaInteresID" />
+            </Principal>
+            <Dependent Role="Prestamos">
+              <PropertyRef Name="tasaInteresID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProgresoP__prest__540C7B00">
+          <End Role="Prestamos" Type="Self.Prestamo" Multiplicity="1" />
+          <End Role="ProgresoPrestamos" Type="Self.ProgresoPrestamo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Prestamos">
+              <PropertyRef Name="prestamoID" />
+            </Principal>
+            <Dependent Role="ProgresoPrestamos">
+              <PropertyRef Name="prestamoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__rolID__1BC821DD">
+          <End Role="RolesUsuario" Type="Self.RolesUsuario" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RolesUsuario">
+              <PropertyRef Name="rolID" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="rolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NatilleraDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ahorros" EntityType="Self.Ahorro" />
+          <EntitySet Name="Clientes" EntityType="Self.Cliente" />
+          <EntitySet Name="CuentasBancarias" EntityType="Self.CuentasBancaria" />
+          <EntitySet Name="Depositoes" EntityType="Self.Deposito" />
+          <EntitySet Name="EstadoPrestamoes" EntityType="Self.EstadoPrestamo" />
+          <EntitySet Name="HistorialCambios" EntityType="Self.HistorialCambio" />
+          <EntitySet Name="Movimientos" EntityType="Self.Movimiento" />
+          <EntitySet Name="Notificaciones" EntityType="Self.Notificacione" />
+          <EntitySet Name="PagoPrestamos" EntityType="Self.PagoPrestamo" />
+          <EntitySet Name="Prestamos" EntityType="Self.Prestamo" />
+          <EntitySet Name="ProgresoAhorroes" EntityType="Self.ProgresoAhorro" />
+          <EntitySet Name="ProgresoPrestamos" EntityType="Self.ProgresoPrestamo" />
+          <EntitySet Name="RolesUsuarios" EntityType="Self.RolesUsuario" />
+          <EntitySet Name="TasaInteres" EntityType="Self.TasaIntere" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK__Ahorros__cliente__5070F446" Association="Self.FK__Ahorros__cliente__5070F446">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Ahorros" EntitySet="Ahorros" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Deposito__ahorro__5812160E" Association="Self.FK__Deposito__ahorro__5812160E">
+            <End Role="Ahorros" EntitySet="Ahorros" />
+            <End Role="Deposito" EntitySet="Depositoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Historial__ahorr__534D60F1" Association="Self.FK__Historial__ahorr__534D60F1">
+            <End Role="Ahorros" EntitySet="Ahorros" />
+            <End Role="HistorialCambios" EntitySet="HistorialCambios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProgresoA__ahorr__5DCAEF64" Association="Self.FK__ProgresoA__ahorr__5DCAEF64">
+            <End Role="Ahorros" EntitySet="Ahorros" />
+            <End Role="ProgresoAhorro" EntitySet="ProgresoAhorroes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CuentasBa__clien__160F4887" Association="Self.FK__CuentasBa__clien__160F4887">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="CuentasBancarias" EntitySet="CuentasBancarias" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Deposito__client__59063A47" Association="Self.FK__Deposito__client__59063A47">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Deposito" EntitySet="Depositoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__clien__03F0984C" Association="Self.FK__Movimient__clien__03F0984C">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Movimientos" EntitySet="Movimientos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificac__clien__7F2BE32F" Association="Self.FK__Notificac__clien__7F2BE32F">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Notificaciones" EntitySet="Notificaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PagoPrest__clien__4F47C5E3" Association="Self.FK__PagoPrest__clien__4F47C5E3">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="PagoPrestamos" EntitySet="PagoPrestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Prestamos__clien__32AB8735" Association="Self.FK__Prestamos__clien__32AB8735">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Prestamos" EntitySet="Prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProgresoA__clien__5EBF139D" Association="Self.FK__ProgresoA__clien__5EBF139D">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="ProgresoAhorro" EntitySet="ProgresoAhorroes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProgresoP__clien__55009F39" Association="Self.FK__ProgresoP__clien__55009F39">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="ProgresoPrestamos" EntitySet="ProgresoPrestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Prestamos__estad__3493CFA7" Association="Self.FK__Prestamos__estad__3493CFA7">
+            <End Role="EstadoPrestamo" EntitySet="EstadoPrestamoes" />
+            <End Role="Prestamos" EntitySet="Prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PagoPrest__prest__4E53A1AA" Association="Self.FK__PagoPrest__prest__4E53A1AA">
+            <End Role="Prestamos" EntitySet="Prestamos" />
+            <End Role="PagoPrestamos" EntitySet="PagoPrestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Prestamos__tasaI__339FAB6E" Association="Self.FK__Prestamos__tasaI__339FAB6E">
+            <End Role="TasaInteres" EntitySet="TasaInteres" />
+            <End Role="Prestamos" EntitySet="Prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProgresoP__prest__540C7B00" Association="Self.FK__ProgresoP__prest__540C7B00">
+            <End Role="Prestamos" EntitySet="Prestamos" />
+            <End Role="ProgresoPrestamos" EntitySet="ProgresoPrestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__rolID__1BC821DD" Association="Self.FK__Usuarios__rolID__1BC821DD">
+            <End Role="RolesUsuario" EntitySet="RolesUsuarios" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NatilleraDBModelStoreContainer" CdmEntityContainer="NatilleraDBEntities">
+          <EntitySetMapping Name="Ahorros">
+            <EntityTypeMapping TypeName="NatilleraDBModel.Ahorro">
+              <MappingFragment StoreEntitySet="Ahorros">
+                <ScalarProperty Name="ahorroID" ColumnName="ahorroID" />
+                <ScalarProperty Name="clienteID" ColumnName="clienteID" />
+                <ScalarProperty Name="montoMensual" ColumnName="montoMensual" />
+                <ScalarProperty Name="fechaInicial" ColumnName="fechaInicial" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="NatilleraDBModel.Cliente">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="clienteID" ColumnName="clienteID" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CuentasBancarias">
+            <EntityTypeMapping TypeName="NatilleraDBModel.CuentasBancaria">
+              <MappingFragment StoreEntitySet="CuentasBancarias">
+                <ScalarProperty Name="cuentaID" ColumnName="cuentaID" />
+                <ScalarProperty Name="clienteID" ColumnName="clienteID" />
+                <ScalarProperty Name="numeroCuenta" ColumnName="numeroCuenta" />
+                <ScalarProperty Name="banco" ColumnName="banco" />
+                <ScalarProperty Name="saldo" ColumnName="saldo" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Depositoes">
+            <EntityTypeMapping TypeName="NatilleraDBModel.Deposito">
+              <MappingFragment StoreEntitySet="Deposito">
+                <ScalarProperty Name="depositoID" ColumnName="depositoID" />
+                <ScalarProperty Name="ahorroID" ColumnName="ahorroID" />
+                <ScalarProperty Name="clienteID" ColumnName="clienteID" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstadoPrestamoes">
+            <EntityTypeMapping TypeName="NatilleraDBModel.EstadoPrestamo">
+              <MappingFragment StoreEntitySet="EstadoPrestamo">
+                <ScalarProperty Name="estadoPrestamoID" ColumnName="estadoPrestamoID" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistorialCambios">
+            <EntityTypeMapping TypeName="NatilleraDBModel.HistorialCambio">
+              <MappingFragment StoreEntitySet="HistorialCambios">
+                <ScalarProperty Name="cambioID" ColumnName="cambioID" />
+                <ScalarProperty Name="ahorroID" ColumnName="ahorroID" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fechaCambio" ColumnName="fechaCambio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movimientos">
+            <EntityTypeMapping TypeName="NatilleraDBModel.Movimiento">
+              <MappingFragment StoreEntitySet="Movimientos">
+                <ScalarProperty Name="movimientoID" ColumnName="movimientoID" />
+                <ScalarProperty Name="clienteID" ColumnName="clienteID" />
+                <ScalarProperty Name="tipoMovimiento" ColumnName="tipoMovimiento" />
+                <ScalarProperty Name="fechaMovimiento" ColumnName="fechaMovimiento" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notificaciones">
+            <EntityTypeMapping TypeName="NatilleraDBModel.Notificacione">
+              <MappingFragment StoreEntitySet="Notificaciones">
+                <ScalarProperty Name="notificacionID" ColumnName="notificacionID" />
+                <ScalarProperty Name="clienteID" ColumnName="clienteID" />
+                <ScalarProperty Name="tipoNotificacion" ColumnName="tipoNotificacion" />
+                <ScalarProperty Name="fechaEnvio" ColumnName="fechaEnvio" />
+                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PagoPrestamos">
+            <EntityTypeMapping TypeName="NatilleraDBModel.PagoPrestamo">
+              <MappingFragment StoreEntitySet="PagoPrestamos">
+                <ScalarProperty Name="pagoID" ColumnName="pagoID" />
+                <ScalarProperty Name="prestamoID" ColumnName="prestamoID" />
+                <ScalarProperty Name="clienteID" ColumnName="clienteID" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prestamos">
+            <EntityTypeMapping TypeName="NatilleraDBModel.Prestamo">
+              <MappingFragment StoreEntitySet="Prestamos">
+                <ScalarProperty Name="prestamoID" ColumnName="prestamoID" />
+                <ScalarProperty Name="clienteID" ColumnName="clienteID" />
+                <ScalarProperty Name="fechaSolicitud" ColumnName="fechaSolicitud" />
+                <ScalarProperty Name="montoSolicitado" ColumnName="montoSolicitado" />
+                <ScalarProperty Name="tasaInteresID" ColumnName="tasaInteresID" />
+                <ScalarProperty Name="estadoPrestamoID" ColumnName="estadoPrestamoID" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProgresoAhorroes">
+            <EntityTypeMapping TypeName="NatilleraDBModel.ProgresoAhorro">
+              <MappingFragment StoreEntitySet="ProgresoAhorro">
+                <ScalarProperty Name="ahorroID" ColumnName="ahorroID" />
+                <ScalarProperty Name="clienteID" ColumnName="clienteID" />
+                <ScalarProperty Name="numeroPagos" ColumnName="numeroPagos" />
+                <ScalarProperty Name="totalMonto" ColumnName="totalMonto" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProgresoPrestamos">
+            <EntityTypeMapping TypeName="NatilleraDBModel.ProgresoPrestamo">
+              <MappingFragment StoreEntitySet="ProgresoPrestamos">
+                <ScalarProperty Name="prestamoID" ColumnName="prestamoID" />
+                <ScalarProperty Name="clienteID" ColumnName="clienteID" />
+                <ScalarProperty Name="montoPendiente" ColumnName="montoPendiente" />
+                <ScalarProperty Name="montoPagado" ColumnName="montoPagado" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RolesUsuarios">
+            <EntityTypeMapping TypeName="NatilleraDBModel.RolesUsuario">
+              <MappingFragment StoreEntitySet="RolesUsuario">
+                <ScalarProperty Name="rolID" ColumnName="rolID" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TasaInteres">
+            <EntityTypeMapping TypeName="NatilleraDBModel.TasaIntere">
+              <MappingFragment StoreEntitySet="TasaInteres">
+                <ScalarProperty Name="tasaInteresID" ColumnName="tasaInteresID" />
+                <ScalarProperty Name="porcentaje" ColumnName="porcentaje" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="NatilleraDBModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="usuarioID" ColumnName="usuarioID" />
+                <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="rolID" ColumnName="rolID" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
