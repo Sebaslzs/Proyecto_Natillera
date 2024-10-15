@@ -17,9 +17,9 @@
         <EntityTypeShape EntityType="NatilleraDBModel.Prestamo" Width="1.5" PointX="6" PointY="19.375" IsExpanded="true" />
         <EntityTypeShape EntityType="NatilleraDBModel.ProgresoAhorro" Width="1.5" PointX="8.25" PointY="11.875" IsExpanded="true" />
         <EntityTypeShape EntityType="NatilleraDBModel.ProgresoPrestamo" Width="1.5" PointX="8.25" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NatilleraDBModel.RolesUsuario" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NatilleraDBModel.RolesUsuario" Width="1.5" PointX="3.625" PointY="0.625" IsExpanded="true" />
         <EntityTypeShape EntityType="NatilleraDBModel.TasaIntere" Width="1.5" PointX="3.75" PointY="25.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NatilleraDBModel.Usuario" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="NatilleraDBModel.Usuario" Width="1.5" PointX="6.625" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="NatilleraDBModel.FK__Ahorros__cliente__5070F446" ManuallyRouted="false" />
         <AssociationConnector Association="NatilleraDBModel.FK__Deposito__ahorro__5812160E" ManuallyRouted="false" />
         <AssociationConnector Association="NatilleraDBModel.FK__Historial__ahorr__534D60F1" ManuallyRouted="false" />
