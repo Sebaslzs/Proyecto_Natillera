@@ -13,10 +13,10 @@ namespace Natillera1.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Natillera1 : DbContext
+    public partial class DBSuperEntities : DbContext
     {
-        public Natillera1()
-            : base("name=Natillera1")
+        public DBSuperEntities()
+            : base("name=DBSuperEntities")
         {
         }
     
