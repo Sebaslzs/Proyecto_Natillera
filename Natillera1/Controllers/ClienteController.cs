@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Natillera1.Views.Clientes
+namespace Natillera1.Controllers
 {
-	public class Delete
-	{
-	}
+    public class ClienteController
+    {
+    }
 }
