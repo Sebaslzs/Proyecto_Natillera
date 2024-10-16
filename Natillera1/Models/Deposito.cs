@@ -9,6 +9,7 @@
 
 namespace Natillera1.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -19,8 +20,10 @@ namespace Natillera1.Models
         public Nullable<int> clienteID { get; set; }
         public decimal monto { get; set; }
         public System.DateTime fecha { get; set; }
-    
+
+        [JsonIgnore]
         public virtual Ahorro Ahorro { get; set; }
+        [JsonIgnore]
         public virtual Cliente Cliente { get; set; }
     }
 }
