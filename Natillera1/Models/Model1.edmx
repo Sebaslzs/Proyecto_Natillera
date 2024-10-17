@@ -127,6 +127,16 @@
           <Property Name="rolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="TasaInteres">
           <Key>
             <PropertyRef Name="tasaInteresID" />
@@ -143,7 +153,7 @@
           <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="rolID" Type="int" />
         </EntityType>
-        <Association Name="FK__Ahorros__cliente__3E52440B">
+        <Association Name="FK__Ahorros__cliente__5070F446">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
           <End Role="Ahorros" Type="Self.Ahorros" Multiplicity="*" />
           <ReferentialConstraint>
@@ -155,7 +165,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Deposito__ahorro__59063A47">
+        <Association Name="FK__Deposito__ahorro__6477ECF3">
           <End Role="Ahorros" Type="Self.Ahorros" Multiplicity="0..1" />
           <End Role="Deposito" Type="Self.Deposito" Multiplicity="*" />
           <ReferentialConstraint>
@@ -167,7 +177,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Deposito__client__59FA5E80">
+        <Association Name="FK__Deposito__client__656C112C">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
           <End Role="Deposito" Type="Self.Deposito" Multiplicity="*" />
           <ReferentialConstraint>
@@ -179,7 +189,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleLi__liqui__6B24EA82">
+        <Association Name="FK__DetalleLi__liqui__76969D2E">
           <End Role="Liquidaciones" Type="Self.Liquidaciones" Multiplicity="0..1" />
           <End Role="DetalleLiquidacion" Type="Self.DetalleLiquidacion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -191,7 +201,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Liquidaci__clien__68487DD7">
+        <Association Name="FK__Liquidaci__clien__73BA3083">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
           <End Role="Liquidaciones" Type="Self.Liquidaciones" Multiplicity="*" />
           <ReferentialConstraint>
@@ -203,7 +213,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Movimient__clien__70DDC3D8">
+        <Association Name="FK__Movimient__clien__7C4F7684">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
           <End Role="Movimientos" Type="Self.Movimientos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -215,7 +225,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Multas__clienteI__6E01572D">
+        <Association Name="FK__Multas__clienteI__797309D9">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
           <End Role="Multas" Type="Self.Multas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -227,7 +237,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PagoPrest__clien__619B8048">
+        <Association Name="FK__PagoPrest__clien__6D0D32F4">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
           <End Role="PagoPrestamo" Type="Self.PagoPrestamo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -239,7 +249,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PagoPrest__prest__60A75C0F">
+        <Association Name="FK__PagoPrest__prest__6C190EBB">
           <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="0..1" />
           <End Role="PagoPrestamo" Type="Self.PagoPrestamo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -251,7 +261,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prestamos__clien__412EB0B6">
+        <Association Name="FK__Prestamos__clien__534D60F1">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
           <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -263,7 +273,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prestamos__estad__4316F928">
+        <Association Name="FK__Prestamos__estad__5535A963">
           <End Role="EstadoPrestamo" Type="Self.EstadoPrestamo" Multiplicity="0..1" />
           <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -275,7 +285,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prestamos__tasaI__4222D4EF">
+        <Association Name="FK__Prestamos__tasaI__5441852A">
           <End Role="TasaInteres" Type="Self.TasaInteres" Multiplicity="0..1" />
           <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -287,7 +297,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProgresoA__ahorr__5CD6CB2B">
+        <Association Name="FK__ProgresoA__ahorr__68487DD7">
           <End Role="Ahorros" Type="Self.Ahorros" Multiplicity="1" />
           <End Role="ProgresoAhorro" Type="Self.ProgresoAhorro" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -299,7 +309,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProgresoA__clien__5DCAEF64">
+        <Association Name="FK__ProgresoA__clien__693CA210">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
           <End Role="ProgresoAhorro" Type="Self.ProgresoAhorro" Multiplicity="*" />
           <ReferentialConstraint>
@@ -311,7 +321,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProgresoP__clien__656C112C">
+        <Association Name="FK__ProgresoP__clien__70DDC3D8">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
           <End Role="ProgresoPrestamo" Type="Self.ProgresoPrestamo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -323,7 +333,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProgresoP__prest__6477ECF3">
+        <Association Name="FK__ProgresoP__prest__6FE99F9F">
           <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="1" />
           <End Role="ProgresoPrestamo" Type="Self.ProgresoPrestamo" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -335,7 +345,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__rolID__5535A963">
+        <Association Name="FK__Usuarios__rolID__619B8048">
           <End Role="RolesUsuario" Type="Self.RolesUsuario" Multiplicity="0..1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -361,73 +371,74 @@
           <EntitySet Name="ProgresoAhorro" EntityType="Self.ProgresoAhorro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProgresoPrestamo" EntityType="Self.ProgresoPrestamo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RolesUsuario" EntityType="Self.RolesUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TasaInteres" EntityType="Self.TasaInteres" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Ahorros__cliente__3E52440B" Association="Self.FK__Ahorros__cliente__3E52440B">
+          <AssociationSet Name="FK__Ahorros__cliente__5070F446" Association="Self.FK__Ahorros__cliente__5070F446">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Ahorros" EntitySet="Ahorros" />
           </AssociationSet>
-          <AssociationSet Name="FK__Deposito__ahorro__59063A47" Association="Self.FK__Deposito__ahorro__59063A47">
+          <AssociationSet Name="FK__Deposito__ahorro__6477ECF3" Association="Self.FK__Deposito__ahorro__6477ECF3">
             <End Role="Ahorros" EntitySet="Ahorros" />
             <End Role="Deposito" EntitySet="Deposito" />
           </AssociationSet>
-          <AssociationSet Name="FK__Deposito__client__59FA5E80" Association="Self.FK__Deposito__client__59FA5E80">
+          <AssociationSet Name="FK__Deposito__client__656C112C" Association="Self.FK__Deposito__client__656C112C">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Deposito" EntitySet="Deposito" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleLi__liqui__6B24EA82" Association="Self.FK__DetalleLi__liqui__6B24EA82">
+          <AssociationSet Name="FK__DetalleLi__liqui__76969D2E" Association="Self.FK__DetalleLi__liqui__76969D2E">
             <End Role="Liquidaciones" EntitySet="Liquidaciones" />
             <End Role="DetalleLiquidacion" EntitySet="DetalleLiquidacion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Liquidaci__clien__68487DD7" Association="Self.FK__Liquidaci__clien__68487DD7">
+          <AssociationSet Name="FK__Liquidaci__clien__73BA3083" Association="Self.FK__Liquidaci__clien__73BA3083">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Liquidaciones" EntitySet="Liquidaciones" />
           </AssociationSet>
-          <AssociationSet Name="FK__Movimient__clien__70DDC3D8" Association="Self.FK__Movimient__clien__70DDC3D8">
+          <AssociationSet Name="FK__Movimient__clien__7C4F7684" Association="Self.FK__Movimient__clien__7C4F7684">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Movimientos" EntitySet="Movimientos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Multas__clienteI__6E01572D" Association="Self.FK__Multas__clienteI__6E01572D">
+          <AssociationSet Name="FK__Multas__clienteI__797309D9" Association="Self.FK__Multas__clienteI__797309D9">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Multas" EntitySet="Multas" />
           </AssociationSet>
-          <AssociationSet Name="FK__PagoPrest__clien__619B8048" Association="Self.FK__PagoPrest__clien__619B8048">
+          <AssociationSet Name="FK__PagoPrest__clien__6D0D32F4" Association="Self.FK__PagoPrest__clien__6D0D32F4">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="PagoPrestamo" EntitySet="PagoPrestamo" />
           </AssociationSet>
-          <AssociationSet Name="FK__PagoPrest__prest__60A75C0F" Association="Self.FK__PagoPrest__prest__60A75C0F">
+          <AssociationSet Name="FK__PagoPrest__prest__6C190EBB" Association="Self.FK__PagoPrest__prest__6C190EBB">
             <End Role="Prestamos" EntitySet="Prestamos" />
             <End Role="PagoPrestamo" EntitySet="PagoPrestamo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prestamos__clien__412EB0B6" Association="Self.FK__Prestamos__clien__412EB0B6">
+          <AssociationSet Name="FK__Prestamos__clien__534D60F1" Association="Self.FK__Prestamos__clien__534D60F1">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Prestamos" EntitySet="Prestamos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prestamos__estad__4316F928" Association="Self.FK__Prestamos__estad__4316F928">
+          <AssociationSet Name="FK__Prestamos__estad__5535A963" Association="Self.FK__Prestamos__estad__5535A963">
             <End Role="EstadoPrestamo" EntitySet="EstadoPrestamo" />
             <End Role="Prestamos" EntitySet="Prestamos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prestamos__tasaI__4222D4EF" Association="Self.FK__Prestamos__tasaI__4222D4EF">
+          <AssociationSet Name="FK__Prestamos__tasaI__5441852A" Association="Self.FK__Prestamos__tasaI__5441852A">
             <End Role="TasaInteres" EntitySet="TasaInteres" />
             <End Role="Prestamos" EntitySet="Prestamos" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProgresoA__ahorr__5CD6CB2B" Association="Self.FK__ProgresoA__ahorr__5CD6CB2B">
+          <AssociationSet Name="FK__ProgresoA__ahorr__68487DD7" Association="Self.FK__ProgresoA__ahorr__68487DD7">
             <End Role="Ahorros" EntitySet="Ahorros" />
             <End Role="ProgresoAhorro" EntitySet="ProgresoAhorro" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProgresoA__clien__5DCAEF64" Association="Self.FK__ProgresoA__clien__5DCAEF64">
+          <AssociationSet Name="FK__ProgresoA__clien__693CA210" Association="Self.FK__ProgresoA__clien__693CA210">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="ProgresoAhorro" EntitySet="ProgresoAhorro" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProgresoP__clien__656C112C" Association="Self.FK__ProgresoP__clien__656C112C">
+          <AssociationSet Name="FK__ProgresoP__clien__70DDC3D8" Association="Self.FK__ProgresoP__clien__70DDC3D8">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="ProgresoPrestamo" EntitySet="ProgresoPrestamo" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProgresoP__prest__6477ECF3" Association="Self.FK__ProgresoP__prest__6477ECF3">
+          <AssociationSet Name="FK__ProgresoP__prest__6FE99F9F" Association="Self.FK__ProgresoP__prest__6FE99F9F">
             <End Role="Prestamos" EntitySet="Prestamos" />
             <End Role="ProgresoPrestamo" EntitySet="ProgresoPrestamo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__rolID__5535A963" Association="Self.FK__Usuarios__rolID__5535A963">
+          <AssociationSet Name="FK__Usuarios__rolID__619B8048" Association="Self.FK__Usuarios__rolID__619B8048">
             <End Role="RolesUsuario" EntitySet="RolesUsuario" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -445,9 +456,9 @@
           <Property Name="clienteID" Type="Int32" />
           <Property Name="montoMensual" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="fechaInicial" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK__Ahorros__cliente__3E52440B" FromRole="Ahorros" ToRole="Clientes" />
-          <NavigationProperty Name="Depositoes" Relationship="Self.FK__Deposito__ahorro__59063A47" FromRole="Ahorros" ToRole="Deposito" />
-          <NavigationProperty Name="ProgresoAhorro" Relationship="Self.FK__ProgresoA__ahorr__5CD6CB2B" FromRole="Ahorros" ToRole="ProgresoAhorro" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Ahorros__cliente__5070F446" FromRole="Ahorros" ToRole="Clientes" />
+          <NavigationProperty Name="Depositoes" Relationship="Self.FK__Deposito__ahorro__6477ECF3" FromRole="Ahorros" ToRole="Deposito" />
+          <NavigationProperty Name="ProgresoAhorro" Relationship="Self.FK__ProgresoA__ahorr__68487DD7" FromRole="Ahorros" ToRole="ProgresoAhorro" />
         </EntityType>
         <EntityType Name="Cliente">
           <Key>
@@ -459,15 +470,15 @@
           <Property Name="identificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Ahorros" Relationship="Self.FK__Ahorros__cliente__3E52440B" FromRole="Clientes" ToRole="Ahorros" />
-          <NavigationProperty Name="Depositoes" Relationship="Self.FK__Deposito__client__59FA5E80" FromRole="Clientes" ToRole="Deposito" />
-          <NavigationProperty Name="Liquidaciones" Relationship="Self.FK__Liquidaci__clien__68487DD7" FromRole="Clientes" ToRole="Liquidaciones" />
-          <NavigationProperty Name="Movimientos" Relationship="Self.FK__Movimient__clien__70DDC3D8" FromRole="Clientes" ToRole="Movimientos" />
-          <NavigationProperty Name="Multas" Relationship="Self.FK__Multas__clienteI__6E01572D" FromRole="Clientes" ToRole="Multas" />
-          <NavigationProperty Name="PagoPrestamoes" Relationship="Self.FK__PagoPrest__clien__619B8048" FromRole="Clientes" ToRole="PagoPrestamo" />
-          <NavigationProperty Name="Prestamos" Relationship="Self.FK__Prestamos__clien__412EB0B6" FromRole="Clientes" ToRole="Prestamos" />
-          <NavigationProperty Name="ProgresoAhorroes" Relationship="Self.FK__ProgresoA__clien__5DCAEF64" FromRole="Clientes" ToRole="ProgresoAhorro" />
-          <NavigationProperty Name="ProgresoPrestamoes" Relationship="Self.FK__ProgresoP__clien__656C112C" FromRole="Clientes" ToRole="ProgresoPrestamo" />
+          <NavigationProperty Name="Ahorros" Relationship="Self.FK__Ahorros__cliente__5070F446" FromRole="Clientes" ToRole="Ahorros" />
+          <NavigationProperty Name="Depositoes" Relationship="Self.FK__Deposito__client__656C112C" FromRole="Clientes" ToRole="Deposito" />
+          <NavigationProperty Name="Liquidaciones" Relationship="Self.FK__Liquidaci__clien__73BA3083" FromRole="Clientes" ToRole="Liquidaciones" />
+          <NavigationProperty Name="Movimientos" Relationship="Self.FK__Movimient__clien__7C4F7684" FromRole="Clientes" ToRole="Movimientos" />
+          <NavigationProperty Name="Multas" Relationship="Self.FK__Multas__clienteI__797309D9" FromRole="Clientes" ToRole="Multas" />
+          <NavigationProperty Name="PagoPrestamoes" Relationship="Self.FK__PagoPrest__clien__6D0D32F4" FromRole="Clientes" ToRole="PagoPrestamo" />
+          <NavigationProperty Name="Prestamos" Relationship="Self.FK__Prestamos__clien__534D60F1" FromRole="Clientes" ToRole="Prestamos" />
+          <NavigationProperty Name="ProgresoAhorroes" Relationship="Self.FK__ProgresoA__clien__693CA210" FromRole="Clientes" ToRole="ProgresoAhorro" />
+          <NavigationProperty Name="ProgresoPrestamoes" Relationship="Self.FK__ProgresoP__clien__70DDC3D8" FromRole="Clientes" ToRole="ProgresoPrestamo" />
         </EntityType>
         <EntityType Name="Deposito">
           <Key>
@@ -478,8 +489,8 @@
           <Property Name="clienteID" Type="Int32" />
           <Property Name="monto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Ahorro" Relationship="Self.FK__Deposito__ahorro__59063A47" FromRole="Deposito" ToRole="Ahorros" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK__Deposito__client__59FA5E80" FromRole="Deposito" ToRole="Clientes" />
+          <NavigationProperty Name="Ahorro" Relationship="Self.FK__Deposito__ahorro__6477ECF3" FromRole="Deposito" ToRole="Ahorros" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Deposito__client__656C112C" FromRole="Deposito" ToRole="Clientes" />
         </EntityType>
         <EntityType Name="DetalleLiquidacion">
           <Key>
@@ -489,7 +500,7 @@
           <Property Name="liquidacionID" Type="Int32" />
           <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="monto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Liquidacione" Relationship="Self.FK__DetalleLi__liqui__6B24EA82" FromRole="DetalleLiquidacion" ToRole="Liquidaciones" />
+          <NavigationProperty Name="Liquidacione" Relationship="Self.FK__DetalleLi__liqui__76969D2E" FromRole="DetalleLiquidacion" ToRole="Liquidaciones" />
         </EntityType>
         <EntityType Name="EstadoPrestamo">
           <Key>
@@ -497,7 +508,7 @@
           </Key>
           <Property Name="estadoPrestamoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Prestamos" Relationship="Self.FK__Prestamos__estad__4316F928" FromRole="EstadoPrestamo" ToRole="Prestamos" />
+          <NavigationProperty Name="Prestamos" Relationship="Self.FK__Prestamos__estad__5535A963" FromRole="EstadoPrestamo" ToRole="Prestamos" />
         </EntityType>
         <EntityType Name="Liquidacione">
           <Key>
@@ -508,8 +519,8 @@
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="montoTotal" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK__Liquidaci__clien__68487DD7" FromRole="Liquidaciones" ToRole="Clientes" />
-          <NavigationProperty Name="DetalleLiquidacions" Relationship="Self.FK__DetalleLi__liqui__6B24EA82" FromRole="Liquidaciones" ToRole="DetalleLiquidacion" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Liquidaci__clien__73BA3083" FromRole="Liquidaciones" ToRole="Clientes" />
+          <NavigationProperty Name="DetalleLiquidacions" Relationship="Self.FK__DetalleLi__liqui__76969D2E" FromRole="Liquidaciones" ToRole="DetalleLiquidacion" />
         </EntityType>
         <EntityType Name="Movimiento">
           <Key>
@@ -520,7 +531,7 @@
           <Property Name="tipoMovimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fechaMovimiento" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="monto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK__Movimient__clien__70DDC3D8" FromRole="Movimientos" ToRole="Clientes" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Movimient__clien__7C4F7684" FromRole="Movimientos" ToRole="Clientes" />
         </EntityType>
         <EntityType Name="Multa">
           <Key>
@@ -531,7 +542,7 @@
           <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="monto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK__Multas__clienteI__6E01572D" FromRole="Multas" ToRole="Clientes" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Multas__clienteI__797309D9" FromRole="Multas" ToRole="Clientes" />
         </EntityType>
         <EntityType Name="PagoPrestamo">
           <Key>
@@ -542,8 +553,8 @@
           <Property Name="clienteID" Type="Int32" />
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="monto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK__PagoPrest__clien__619B8048" FromRole="PagoPrestamo" ToRole="Clientes" />
-          <NavigationProperty Name="Prestamo" Relationship="Self.FK__PagoPrest__prest__60A75C0F" FromRole="PagoPrestamo" ToRole="Prestamos" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__PagoPrest__clien__6D0D32F4" FromRole="PagoPrestamo" ToRole="Clientes" />
+          <NavigationProperty Name="Prestamo" Relationship="Self.FK__PagoPrest__prest__6C190EBB" FromRole="PagoPrestamo" ToRole="Prestamos" />
         </EntityType>
         <EntityType Name="Prestamo">
           <Key>
@@ -555,11 +566,11 @@
           <Property Name="montoSolicitado" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="tasaInteresID" Type="Int32" />
           <Property Name="estadoPrestamoID" Type="Int32" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK__Prestamos__clien__412EB0B6" FromRole="Prestamos" ToRole="Clientes" />
-          <NavigationProperty Name="EstadoPrestamo" Relationship="Self.FK__Prestamos__estad__4316F928" FromRole="Prestamos" ToRole="EstadoPrestamo" />
-          <NavigationProperty Name="PagoPrestamoes" Relationship="Self.FK__PagoPrest__prest__60A75C0F" FromRole="Prestamos" ToRole="PagoPrestamo" />
-          <NavigationProperty Name="TasaIntere" Relationship="Self.FK__Prestamos__tasaI__4222D4EF" FromRole="Prestamos" ToRole="TasaInteres" />
-          <NavigationProperty Name="ProgresoPrestamo" Relationship="Self.FK__ProgresoP__prest__6477ECF3" FromRole="Prestamos" ToRole="ProgresoPrestamo" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Prestamos__clien__534D60F1" FromRole="Prestamos" ToRole="Clientes" />
+          <NavigationProperty Name="EstadoPrestamo" Relationship="Self.FK__Prestamos__estad__5535A963" FromRole="Prestamos" ToRole="EstadoPrestamo" />
+          <NavigationProperty Name="PagoPrestamoes" Relationship="Self.FK__PagoPrest__prest__6C190EBB" FromRole="Prestamos" ToRole="PagoPrestamo" />
+          <NavigationProperty Name="TasaIntere" Relationship="Self.FK__Prestamos__tasaI__5441852A" FromRole="Prestamos" ToRole="TasaInteres" />
+          <NavigationProperty Name="ProgresoPrestamo" Relationship="Self.FK__ProgresoP__prest__6FE99F9F" FromRole="Prestamos" ToRole="ProgresoPrestamo" />
         </EntityType>
         <EntityType Name="ProgresoAhorro">
           <Key>
@@ -569,8 +580,8 @@
           <Property Name="clienteID" Type="Int32" />
           <Property Name="numeroPagos" Type="Int32" Nullable="false" />
           <Property Name="totalMonto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Ahorro" Relationship="Self.FK__ProgresoA__ahorr__5CD6CB2B" FromRole="ProgresoAhorro" ToRole="Ahorros" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK__ProgresoA__clien__5DCAEF64" FromRole="ProgresoAhorro" ToRole="Clientes" />
+          <NavigationProperty Name="Ahorro" Relationship="Self.FK__ProgresoA__ahorr__68487DD7" FromRole="ProgresoAhorro" ToRole="Ahorros" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__ProgresoA__clien__693CA210" FromRole="ProgresoAhorro" ToRole="Clientes" />
         </EntityType>
         <EntityType Name="ProgresoPrestamo">
           <Key>
@@ -580,8 +591,8 @@
           <Property Name="clienteID" Type="Int32" />
           <Property Name="montoPendiente" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="montoPagado" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK__ProgresoP__clien__656C112C" FromRole="ProgresoPrestamo" ToRole="Clientes" />
-          <NavigationProperty Name="Prestamo" Relationship="Self.FK__ProgresoP__prest__6477ECF3" FromRole="ProgresoPrestamo" ToRole="Prestamos" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__ProgresoP__clien__70DDC3D8" FromRole="ProgresoPrestamo" ToRole="Clientes" />
+          <NavigationProperty Name="Prestamo" Relationship="Self.FK__ProgresoP__prest__6FE99F9F" FromRole="ProgresoPrestamo" ToRole="Prestamos" />
         </EntityType>
         <EntityType Name="RolesUsuario">
           <Key>
@@ -589,7 +600,17 @@
           </Key>
           <Property Name="rolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__rolID__5535A963" FromRole="RolesUsuario" ToRole="Usuarios" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__rolID__619B8048" FromRole="RolesUsuario" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TasaIntere">
           <Key>
@@ -597,7 +618,7 @@
           </Key>
           <Property Name="tasaInteresID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tasa" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Prestamos" Relationship="Self.FK__Prestamos__tasaI__4222D4EF" FromRole="TasaInteres" ToRole="Prestamos" />
+          <NavigationProperty Name="Prestamos" Relationship="Self.FK__Prestamos__tasaI__5441852A" FromRole="TasaInteres" ToRole="Prestamos" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -607,9 +628,9 @@
           <Property Name="nombreUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="rolID" Type="Int32" />
-          <NavigationProperty Name="RolesUsuario" Relationship="Self.FK__Usuarios__rolID__5535A963" FromRole="Usuarios" ToRole="RolesUsuario" />
+          <NavigationProperty Name="RolesUsuario" Relationship="Self.FK__Usuarios__rolID__619B8048" FromRole="Usuarios" ToRole="RolesUsuario" />
         </EntityType>
-        <Association Name="FK__Ahorros__cliente__3E52440B">
+        <Association Name="FK__Ahorros__cliente__5070F446">
           <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
           <End Role="Ahorros" Type="Self.Ahorro" Multiplicity="*" />
           <ReferentialConstraint>
@@ -621,7 +642,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Deposito__ahorro__59063A47">
+        <Association Name="FK__Deposito__ahorro__6477ECF3">
           <End Role="Ahorros" Type="Self.Ahorro" Multiplicity="0..1" />
           <End Role="Deposito" Type="Self.Deposito" Multiplicity="*" />
           <ReferentialConstraint>
@@ -633,7 +654,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProgresoA__ahorr__5CD6CB2B">
+        <Association Name="FK__ProgresoA__ahorr__68487DD7">
           <End Role="Ahorros" Type="Self.Ahorro" Multiplicity="1" />
           <End Role="ProgresoAhorro" Type="Self.ProgresoAhorro" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -645,7 +666,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Deposito__client__59FA5E80">
+        <Association Name="FK__Deposito__client__656C112C">
           <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
           <End Role="Deposito" Type="Self.Deposito" Multiplicity="*" />
           <ReferentialConstraint>
@@ -657,7 +678,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Liquidaci__clien__68487DD7">
+        <Association Name="FK__Liquidaci__clien__73BA3083">
           <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
           <End Role="Liquidaciones" Type="Self.Liquidacione" Multiplicity="*" />
           <ReferentialConstraint>
@@ -669,7 +690,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Movimient__clien__70DDC3D8">
+        <Association Name="FK__Movimient__clien__7C4F7684">
           <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
           <End Role="Movimientos" Type="Self.Movimiento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -681,7 +702,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Multas__clienteI__6E01572D">
+        <Association Name="FK__Multas__clienteI__797309D9">
           <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
           <End Role="Multas" Type="Self.Multa" Multiplicity="*" />
           <ReferentialConstraint>
@@ -693,7 +714,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PagoPrest__clien__619B8048">
+        <Association Name="FK__PagoPrest__clien__6D0D32F4">
           <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
           <End Role="PagoPrestamo" Type="Self.PagoPrestamo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -705,7 +726,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prestamos__clien__412EB0B6">
+        <Association Name="FK__Prestamos__clien__534D60F1">
           <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
           <End Role="Prestamos" Type="Self.Prestamo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -717,7 +738,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProgresoA__clien__5DCAEF64">
+        <Association Name="FK__ProgresoA__clien__693CA210">
           <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
           <End Role="ProgresoAhorro" Type="Self.ProgresoAhorro" Multiplicity="*" />
           <ReferentialConstraint>
@@ -729,7 +750,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProgresoP__clien__656C112C">
+        <Association Name="FK__ProgresoP__clien__70DDC3D8">
           <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
           <End Role="ProgresoPrestamo" Type="Self.ProgresoPrestamo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -741,7 +762,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleLi__liqui__6B24EA82">
+        <Association Name="FK__DetalleLi__liqui__76969D2E">
           <End Role="Liquidaciones" Type="Self.Liquidacione" Multiplicity="0..1" />
           <End Role="DetalleLiquidacion" Type="Self.DetalleLiquidacion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -753,7 +774,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prestamos__estad__4316F928">
+        <Association Name="FK__Prestamos__estad__5535A963">
           <End Role="EstadoPrestamo" Type="Self.EstadoPrestamo" Multiplicity="0..1" />
           <End Role="Prestamos" Type="Self.Prestamo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -765,7 +786,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PagoPrest__prest__60A75C0F">
+        <Association Name="FK__PagoPrest__prest__6C190EBB">
           <End Role="Prestamos" Type="Self.Prestamo" Multiplicity="0..1" />
           <End Role="PagoPrestamo" Type="Self.PagoPrestamo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -777,7 +798,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prestamos__tasaI__4222D4EF">
+        <Association Name="FK__Prestamos__tasaI__5441852A">
           <End Role="TasaInteres" Type="Self.TasaIntere" Multiplicity="0..1" />
           <End Role="Prestamos" Type="Self.Prestamo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -789,7 +810,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProgresoP__prest__6477ECF3">
+        <Association Name="FK__ProgresoP__prest__6FE99F9F">
           <End Role="Prestamos" Type="Self.Prestamo" Multiplicity="1" />
           <End Role="ProgresoPrestamo" Type="Self.ProgresoPrestamo" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -801,7 +822,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__rolID__5535A963">
+        <Association Name="FK__Usuarios__rolID__619B8048">
           <End Role="RolesUsuario" Type="Self.RolesUsuario" Multiplicity="0..1" />
           <End Role="Usuarios" Type="Self.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -813,7 +834,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Natillera1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="NatilleraDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Ahorros" EntityType="Self.Ahorro" />
           <EntitySet Name="Clientes" EntityType="Self.Cliente" />
           <EntitySet Name="Depositoes" EntityType="Self.Deposito" />
@@ -827,73 +848,74 @@
           <EntitySet Name="ProgresoAhorroes" EntityType="Self.ProgresoAhorro" />
           <EntitySet Name="ProgresoPrestamoes" EntityType="Self.ProgresoPrestamo" />
           <EntitySet Name="RolesUsuarios" EntityType="Self.RolesUsuario" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TasaInteres" EntityType="Self.TasaIntere" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
-          <AssociationSet Name="FK__Ahorros__cliente__3E52440B" Association="Self.FK__Ahorros__cliente__3E52440B">
+          <AssociationSet Name="FK__Ahorros__cliente__5070F446" Association="Self.FK__Ahorros__cliente__5070F446">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Ahorros" EntitySet="Ahorros" />
           </AssociationSet>
-          <AssociationSet Name="FK__Deposito__ahorro__59063A47" Association="Self.FK__Deposito__ahorro__59063A47">
+          <AssociationSet Name="FK__Deposito__ahorro__6477ECF3" Association="Self.FK__Deposito__ahorro__6477ECF3">
             <End Role="Ahorros" EntitySet="Ahorros" />
             <End Role="Deposito" EntitySet="Depositoes" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProgresoA__ahorr__5CD6CB2B" Association="Self.FK__ProgresoA__ahorr__5CD6CB2B">
+          <AssociationSet Name="FK__ProgresoA__ahorr__68487DD7" Association="Self.FK__ProgresoA__ahorr__68487DD7">
             <End Role="Ahorros" EntitySet="Ahorros" />
             <End Role="ProgresoAhorro" EntitySet="ProgresoAhorroes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Deposito__client__59FA5E80" Association="Self.FK__Deposito__client__59FA5E80">
+          <AssociationSet Name="FK__Deposito__client__656C112C" Association="Self.FK__Deposito__client__656C112C">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Deposito" EntitySet="Depositoes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Liquidaci__clien__68487DD7" Association="Self.FK__Liquidaci__clien__68487DD7">
+          <AssociationSet Name="FK__Liquidaci__clien__73BA3083" Association="Self.FK__Liquidaci__clien__73BA3083">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Liquidaciones" EntitySet="Liquidaciones" />
           </AssociationSet>
-          <AssociationSet Name="FK__Movimient__clien__70DDC3D8" Association="Self.FK__Movimient__clien__70DDC3D8">
+          <AssociationSet Name="FK__Movimient__clien__7C4F7684" Association="Self.FK__Movimient__clien__7C4F7684">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Movimientos" EntitySet="Movimientos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Multas__clienteI__6E01572D" Association="Self.FK__Multas__clienteI__6E01572D">
+          <AssociationSet Name="FK__Multas__clienteI__797309D9" Association="Self.FK__Multas__clienteI__797309D9">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Multas" EntitySet="Multas" />
           </AssociationSet>
-          <AssociationSet Name="FK__PagoPrest__clien__619B8048" Association="Self.FK__PagoPrest__clien__619B8048">
+          <AssociationSet Name="FK__PagoPrest__clien__6D0D32F4" Association="Self.FK__PagoPrest__clien__6D0D32F4">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="PagoPrestamo" EntitySet="PagoPrestamoes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prestamos__clien__412EB0B6" Association="Self.FK__Prestamos__clien__412EB0B6">
+          <AssociationSet Name="FK__Prestamos__clien__534D60F1" Association="Self.FK__Prestamos__clien__534D60F1">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Prestamos" EntitySet="Prestamos" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProgresoA__clien__5DCAEF64" Association="Self.FK__ProgresoA__clien__5DCAEF64">
+          <AssociationSet Name="FK__ProgresoA__clien__693CA210" Association="Self.FK__ProgresoA__clien__693CA210">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="ProgresoAhorro" EntitySet="ProgresoAhorroes" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProgresoP__clien__656C112C" Association="Self.FK__ProgresoP__clien__656C112C">
+          <AssociationSet Name="FK__ProgresoP__clien__70DDC3D8" Association="Self.FK__ProgresoP__clien__70DDC3D8">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="ProgresoPrestamo" EntitySet="ProgresoPrestamoes" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleLi__liqui__6B24EA82" Association="Self.FK__DetalleLi__liqui__6B24EA82">
+          <AssociationSet Name="FK__DetalleLi__liqui__76969D2E" Association="Self.FK__DetalleLi__liqui__76969D2E">
             <End Role="Liquidaciones" EntitySet="Liquidaciones" />
             <End Role="DetalleLiquidacion" EntitySet="DetalleLiquidacions" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prestamos__estad__4316F928" Association="Self.FK__Prestamos__estad__4316F928">
+          <AssociationSet Name="FK__Prestamos__estad__5535A963" Association="Self.FK__Prestamos__estad__5535A963">
             <End Role="EstadoPrestamo" EntitySet="EstadoPrestamoes" />
             <End Role="Prestamos" EntitySet="Prestamos" />
           </AssociationSet>
-          <AssociationSet Name="FK__PagoPrest__prest__60A75C0F" Association="Self.FK__PagoPrest__prest__60A75C0F">
+          <AssociationSet Name="FK__PagoPrest__prest__6C190EBB" Association="Self.FK__PagoPrest__prest__6C190EBB">
             <End Role="Prestamos" EntitySet="Prestamos" />
             <End Role="PagoPrestamo" EntitySet="PagoPrestamoes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prestamos__tasaI__4222D4EF" Association="Self.FK__Prestamos__tasaI__4222D4EF">
+          <AssociationSet Name="FK__Prestamos__tasaI__5441852A" Association="Self.FK__Prestamos__tasaI__5441852A">
             <End Role="TasaInteres" EntitySet="TasaInteres" />
             <End Role="Prestamos" EntitySet="Prestamos" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProgresoP__prest__6477ECF3" Association="Self.FK__ProgresoP__prest__6477ECF3">
+          <AssociationSet Name="FK__ProgresoP__prest__6FE99F9F" Association="Self.FK__ProgresoP__prest__6FE99F9F">
             <End Role="Prestamos" EntitySet="Prestamos" />
             <End Role="ProgresoPrestamo" EntitySet="ProgresoPrestamoes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__rolID__5535A963" Association="Self.FK__Usuarios__rolID__5535A963">
+          <AssociationSet Name="FK__Usuarios__rolID__619B8048" Association="Self.FK__Usuarios__rolID__619B8048">
             <End Role="RolesUsuario" EntitySet="RolesUsuarios" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -903,7 +925,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NatilleraDBModelStoreContainer" CdmEntityContainer="Natillera1">
+        <EntityContainerMapping StorageEntityContainer="NatilleraDBModelStoreContainer" CdmEntityContainer="NatilleraDBEntities">
           <EntitySetMapping Name="Ahorros">
             <EntityTypeMapping TypeName="NatilleraDBModel.Ahorro">
               <MappingFragment StoreEntitySet="Ahorros">
@@ -1039,6 +1061,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="NatilleraDBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TasaInteres">
             <EntityTypeMapping TypeName="NatilleraDBModel.TasaIntere">
               <MappingFragment StoreEntitySet="TasaInteres">
@@ -1074,7 +1107,7 @@
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

@@ -9,10 +9,11 @@
 
 namespace Natillera1.Models
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+    using System.Text.Json.Serialization;
+
+
     public partial class Deposito
     {
         public int depositoID { get; set; }

@@ -11,16 +11,16 @@ namespace Natillera1.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Text.Json.Serialization; // Asegúrate de incluir esto para JsonIgnore
+    using System.Text.Json.Serialization; // Asegúrate de tener esto para JsonIgnore
 
-    public partial class DetalleLiquidacion
+    public partial class sysdiagram
     {
-        public int detalleID { get; set; }
-        public Nullable<int> liquidacionID { get; set; }
-        public string descripcion { get; set; }
-        public decimal monto { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
 
-        [JsonIgnore] // Ignora esta propiedad en la serialización JSON
-        public virtual Liquidacione Liquidacione { get; set; }
+        [JsonIgnore] // Opcional: ignora esta propiedad si no quieres que se serialice
+        public byte[] definition { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace Natillera1.Clases
 {
     public class clsAhorro
     {
-        private DBSuperEntities db = new DBSuperEntities();
+        private NatilleraDBEntities db = new NatilleraDBEntities();
         public Ahorro ahorro { get; set; }
 
         public string Insertar()

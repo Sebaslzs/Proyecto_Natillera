@@ -10,7 +10,8 @@ namespace Natillera1.Clases
 {
     public class clsDeposito
     {
-        private DBSuperEntities db = new DBSuperEntities();
+
+        private NatilleraDBEntities db = new NatilleraDBEntities();
         public Deposito deposito { get; set; }
 
         public string Insertar()
