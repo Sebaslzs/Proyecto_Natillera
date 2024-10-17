@@ -1,13 +1,21 @@
+<<<<<<< HEAD
 ﻿using Natillera1.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
+=======
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+>>>>>>> b75059d0e021cfb3f75381ac1de5be2ca23a7722
 
 namespace Natillera1.Clases
 {
     public class clsCliente
     {
+<<<<<<< HEAD
         private NatilleraDBEntities db = new NatilleraDBEntities();
         public Cliente cliente { get; set; }
 
@@ -95,3 +103,7 @@ namespace Natillera1.Clases
         }
     }
 }
+=======
+    }
+}
+>>>>>>> b75059d0e021cfb3f75381ac1de5be2ca23a7722
