@@ -2,15 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
-using System.IO;
 using System.Linq;
-using System.Text;
+using System.IO;
+
+
+
 
 namespace Natillera1.Clases
 {
     public class clsDeposito
     {
-        private DBSuperEntities db = new DBSuperEntities();
+        private readonly DBSuperEntities db = new DBSuperEntities();
         public Deposito deposito { get; set; }
 
         public string Insertar()
@@ -23,7 +25,7 @@ namespace Natillera1.Clases
             }
             catch (Exception ex)
             {
-                return ex.Message;
+                return $"Error al insertar el depósito: {ex.Message}";
             }
         }
 
@@ -31,10 +33,9 @@ namespace Natillera1.Clases
         {
             try
             {
-                Deposito _deposito = Consultar(deposito.depositoID);
+                var _deposito = Consultar(deposito.depositoID);
                 if (_deposito != null)
                 {
-                    // El depósito existe y se puede actualizar.
                     db.Depositoes.AddOrUpdate(deposito);
                     db.SaveChanges();
                     return $"Se actualizó el depósito con ID: {deposito.depositoID}";
@@ -46,7 +47,7 @@ namespace Natillera1.Clases
             }
             catch (Exception ex)
             {
-                return ex.Message;
+                return $"Error al actualizar el depósito: {ex.Message}";
             }
         }
 
@@ -59,7 +60,7 @@ namespace Natillera1.Clases
         {
             try
             {
-                Deposito _deposito = Consultar(deposito.depositoID);
+                var _deposito = Consultar(deposito.depositoID);
                 if (_deposito != null)
                 {
                     db.Depositoes.Remove(_deposito);
@@ -73,7 +74,7 @@ namespace Natillera1.Clases
             }
             catch (Exception ex)
             {
-                return ex.Message;
+                return $"Error al eliminar el depósito: {ex.Message}";
             }
         }
 
