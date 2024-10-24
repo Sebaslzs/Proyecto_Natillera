@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-﻿using Natillera1.Models;
+using Natillera1.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
@@ -15,9 +14,16 @@ namespace Natillera1.Clases
 {
     public class clsCliente
     {
-<<<<<<< HEAD
-        private NatilleraDBEntities db = new NatilleraDBEntities();
+        private DBSuperEntities db = new DBSuperEntities();
         public Cliente cliente { get; set; }
+
+        // Método para llenar el combo de clientes
+        public List<Cliente> LlenarCombo()
+        {
+            return db.Clientes
+                .OrderBy(c => c.nombre)
+                .ToList();
+        }
 
         // Método para insertar un cliente
         public string Insertar()
@@ -26,36 +32,34 @@ namespace Natillera1.Clases
             {
                 db.Clientes.Add(cliente);
                 db.SaveChanges();
-                return "Se insertó el cliente con ID: " + cliente.clienteID;
+                return "Cliente insertado correctamente.";
             }
             catch (Exception ex)
             {
-                return ex.Message;
+                return $"Error al insertar el cliente: {ex.Message}";
             }
         }
 
-        // Método para actualizar un cliente existente
+        // Método para actualizar un cliente
         public string Actualizar()
         {
             try
             {
-                Cliente _cliente = Consultar(cliente.clienteID);
-                if (_cliente != null)
+                var clienteExistente = db.Clientes.Find(cliente.clienteID);
+                if (clienteExistente != null)
                 {
-                    db.Clientes.AddOrUpdate(cliente);
+                    clienteExistente.nombre = cliente.nombre;
+                    clienteExistente.direccion = cliente.direccion;
+                    clienteExistente.telefono = cliente.telefono;
                     db.SaveChanges();
-                    return "Se actualizó el cliente con ID: " + cliente.clienteID;
+                    return "Cliente actualizado correctamente.";
                 }
-                else
-                {
-                    return "El cliente no existe, por lo tanto no se puede actualizar";
-                }
+                return "Cliente no encontrado.";
             }
             catch (Exception ex)
             {
-                return ex.Message;
+                return $"Error al actualizar el cliente: {ex.Message}";
             }
-        }
 
         // Método para consultar un cliente por su ID
         public Cliente Consultar(int id)
@@ -68,21 +72,18 @@ namespace Natillera1.Clases
         {
             try
             {
-                Cliente _cliente = Consultar(cliente.clienteID);
-                if (_cliente != null)
+                var clienteExistente = db.Clientes.Find(cliente.clienteID);
+                if (clienteExistente != null)
                 {
-                    db.Clientes.Remove(_cliente);
+                    db.Clientes.Remove(clienteExistente);
                     db.SaveChanges();
-                    return "Se eliminó el cliente con ID: " + _cliente.clienteID;
+                    return "Cliente eliminado correctamente.";
                 }
-                else
-                {
-                    return "El cliente no existe";
-                }
+                return "Cliente no encontrado.";
             }
             catch (Exception ex)
             {
-                return ex.Message;
+                return $"Error al eliminar el cliente: {ex.Message}";
             }
         }
 
@@ -95,7 +96,7 @@ namespace Natillera1.Clases
                    {
                        ClienteID = c.clienteID,
                        Nombre = c.nombre,
-                       Apellido = c.apellido,
+                       Apellido =c.apellido,
                        Identificacion = c.identificacion,
                        Direccion = c.direccion,
                        Telefono = c.telefono

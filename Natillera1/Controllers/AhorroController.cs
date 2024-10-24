@@ -8,7 +8,7 @@ using System.Web.Http.Cors;
 
 namespace Natillera1.Controllers
 {
-    [EnableCors(origins: "http://localhost:55005", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:56174", headers: "*", methods: "*")]
     [RoutePrefix("api/Ahorros")]
     public class AhorrosController : ApiController
     {

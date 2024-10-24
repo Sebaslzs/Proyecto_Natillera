@@ -313,10 +313,9 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Clases\clsAhorro.cs" />
     <Compile Include="Clases\clsCliente.cs" />
-<<<<<<< HEAD
     <Compile Include="Clases\clsDeposito.cs" />
     <Compile Include="Controllers\AhorroController.cs" />
-    <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\DepositosController.cs" />
 =======
     <Compile Include="Controllers\AhorroController.cs" />

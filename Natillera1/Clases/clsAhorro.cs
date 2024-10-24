@@ -90,5 +90,11 @@ namespace Natillera1.Clases
                        FechaInicial = a.fechaInicial
                    };
         }
+        public List<Ahorro> LlenarCombo(int clienteID)
+        {
+            return db.Ahorros
+                .Where(a => a.clienteID == clienteID)
+                .ToList();
+        }
     }
 }
