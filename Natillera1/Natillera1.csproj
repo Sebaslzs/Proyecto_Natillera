@@ -314,10 +314,12 @@
     <Compile Include="Clases\clsAhorro.cs" />
     <Compile Include="Clases\clsCliente.cs" />
     <Compile Include="Clases\clsDeposito.cs" />
+    <Compile Include="Clases\clsMulta.cs" />
     <Compile Include="Controllers\AhorroController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\DepositosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MultasController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

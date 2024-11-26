@@ -11,7 +11,8 @@ namespace Natillera1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using Newtonsoft.Json;
+
     public partial class Multa
     {
         public int multaID { get; set; }
@@ -19,7 +20,7 @@ namespace Natillera1.Models
         public string descripcion { get; set; }
         public decimal monto { get; set; }
         public System.DateTime fecha { get; set; }
-    
+        [JsonIgnore]
         public virtual Cliente Cliente { get; set; }
     }
 }
