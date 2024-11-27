@@ -1,9 +1,10 @@
 ﻿using Natillera1.Clases;
 using Natillera1.Models;
-using System.Collections.Generic;
+using System;
+using System.Linq;
+using System.Net;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using System.Linq;
 
 namespace Natillera1.Controllers
 {
@@ -12,46 +13,46 @@ namespace Natillera1.Controllers
     public class MultasController : ApiController
     {
         [HttpGet]
-        [Route("LlenarCombo")]
-        public IEnumerable<Multa> LlenarComboMultas()
+        [Route("ConsultarXID")]
+        public Multa ConsultarXID(int id)
         {
             clsMulta multa = new clsMulta();
-            return multa.LlenarCombo();
+            return multa.Consultar(id);
         }
 
         [HttpGet]
         [Route("LlenarTablaMultas")]
-        public IQueryable<Multa> LlenarTablaMultas()
+        public IQueryable LlenarTablaMultas()
         {
             clsMulta multa = new clsMulta();
-            return multa.LlenarCombo().AsQueryable();
+            return multa.LlenarTablaMultas();
         }
 
         [HttpPost]
         [Route("Insertar")]
         public string Insertar([FromBody] Multa multa)
         {
-            clsMulta multaClase = new clsMulta();
-            multaClase.multa = multa;
-            return multaClase.Insertar();
+            clsMulta clsMulta = new clsMulta();
+            clsMulta.multa = multa;
+            return clsMulta.Insertar();
         }
 
         [HttpPut]
         [Route("Actualizar")]
         public string Actualizar([FromBody] Multa multa)
         {
-            clsMulta multaClase = new clsMulta();
-            multaClase.multa = multa;
-            return multaClase.Actualizar();
+            clsMulta clsMulta = new clsMulta();
+            clsMulta.multa = multa;
+            return clsMulta.Actualizar();
         }
 
         [HttpDelete]
         [Route("Eliminar")]
         public string Eliminar([FromBody] Multa multa)
         {
-            clsMulta multaClase = new clsMulta();
-            multaClase.multa = multa;
-            return multaClase.Eliminar();
+            clsMulta clsMulta = new clsMulta();
+            clsMulta.multa = multa;
+            return clsMulta.Eliminar();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Natillera1.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 
 namespace Natillera1.Clases
@@ -10,85 +11,89 @@ namespace Natillera1.Clases
         private DBSuperEntities db = new DBSuperEntities();
         public Multa multa { get; set; }
 
-        // Método para llenar el combo de multas
-        public List<Multa> LlenarCombo()
-        {
-            return db.Multas
-                .OrderBy(m => m.descripcion)
-                .ToList();
-        }
-
-        // Método para insertar una multa
         public string Insertar()
         {
             try
             {
                 db.Multas.Add(multa);
                 db.SaveChanges();
-                return "Multa insertada correctamente.";
+                return "Se insertó la multa con ID: " + multa.multaID;
             }
             catch (Exception ex)
             {
-                return $"Error al insertar la multa: {ex.Message}";
+                return ex.Message;
             }
         }
 
-        // Método para actualizar una multa
         public string Actualizar()
         {
             try
             {
-                var multaExistente = db.Multas.Find(multa.multaID);
-                if (multaExistente != null)
+                Multa _multa = Consultar(multa.multaID);
+                if (_multa != null)
                 {
-                    multaExistente.clienteID = multa.clienteID;
-                    multaExistente.descripcion = multa.descripcion;
-                    multaExistente.monto = multa.monto;
-                    multaExistente.fecha = multa.fecha;
+                    db.Multas.AddOrUpdate(multa);
                     db.SaveChanges();
-                    return "Multa actualizada correctamente.";
+                    return "Se actualizó la multa con ID: " + multa.multaID;
                 }
-                return "Multa no encontrada.";
+                else
+                {
+                    return "La multa no existe, por lo tanto no se puede actualizar";
+                }
             }
             catch (Exception ex)
             {
-                return $"Error al actualizar la multa: {ex.Message}";
+                return ex.Message;
             }
         }
 
-        // Método para eliminar una multa
+        public Multa Consultar(int id)
+        {
+            return db.Multas.FirstOrDefault(m => m.multaID == id);
+        }
+
         public string Eliminar()
         {
             try
             {
-                var multaExistente = db.Multas.Find(multa.multaID);
-                if (multaExistente != null)
+                Multa _multa = Consultar(multa.multaID);
+                if (_multa != null)
                 {
-                    db.Multas.Remove(multaExistente);
+                    db.Multas.Remove(_multa);
                     db.SaveChanges();
-                    return "Multa eliminada correctamente.";
+                    return "Se eliminó la multa con ID: " + _multa.multaID;
                 }
-                return "Multa no encontrada.";
+                else
+                {
+                    return "La multa no existe";
+                }
             }
             catch (Exception ex)
             {
-                return $"Error al eliminar la multa: {ex.Message}";
+                return ex.Message;
             }
         }
 
-        // Método para llenar la tabla de multas
         public IQueryable LlenarTablaMultas()
         {
             return from m in db.Multas
-                   orderby m.descripcion
+                   join c in db.Clientes on m.clienteID equals c.clienteID
+                   orderby m.fecha
                    select new
                    {
                        MultaID = m.multaID,
-                       ClienteID = m.clienteID,
+                       Cliente = c.nombre,
                        Descripcion = m.descripcion,
                        Monto = m.monto,
                        Fecha = m.fecha
                    };
+        }
+
+        public List<Multa> LlenarCombo(int clienteID)
+        {
+            return db.Multas
+                .Where(m => m.clienteID == clienteID)
+                .ToList();
         }
     }
 }

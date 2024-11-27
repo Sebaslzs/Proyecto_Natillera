@@ -11,15 +11,17 @@ namespace Natillera1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using Newtonsoft.Json;
+
     public partial class ProgresoAhorro
     {
         public int ahorroID { get; set; }
         public Nullable<int> clienteID { get; set; }
         public int numeroPagos { get; set; }
         public decimal totalMonto { get; set; }
-    
+        [JsonIgnore]
         public virtual Ahorro Ahorro { get; set; }
+        [JsonIgnore]
         public virtual Cliente Cliente { get; set; }
     }
 }
