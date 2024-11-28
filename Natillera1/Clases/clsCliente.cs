@@ -7,16 +7,8 @@ namespace Natillera1.Clases
 {
     public class clsCliente
     {
-        private DBSuperEntities db = new DBSuperEntities();
+        private readonly DBSuperEntities db = new DBSuperEntities();
         public Cliente cliente { get; set; }
-
-        // Método para llenar el combo de clientes
-        public List<Cliente> LlenarCombo()
-        {
-            return db.Clientes
-                .OrderBy(c => c.nombre)
-                .ToList();
-        }
 
         // Método para insertar un cliente
         public string Insertar()
@@ -25,7 +17,7 @@ namespace Natillera1.Clases
             {
                 db.Clientes.Add(cliente);
                 db.SaveChanges();
-                return "Cliente insertado correctamente.";
+                return $"Cliente insertado correctamente con ID: {cliente.clienteID}";
             }
             catch (Exception ex)
             {
@@ -38,16 +30,19 @@ namespace Natillera1.Clases
         {
             try
             {
-                var clienteExistente = db.Clientes.Find(cliente.clienteID);
+                var clienteExistente = Consultar(cliente.clienteID);
                 if (clienteExistente != null)
                 {
                     clienteExistente.nombre = cliente.nombre;
                     clienteExistente.direccion = cliente.direccion;
                     clienteExistente.telefono = cliente.telefono;
                     db.SaveChanges();
-                    return "Cliente actualizado correctamente.";
+                    return $"Cliente con ID {cliente.clienteID} actualizado correctamente.";
                 }
-                return "Cliente no encontrado.";
+                else
+                {
+                    return "El cliente no existe, por lo tanto no se puede actualizar.";
+                }
             }
             catch (Exception ex)
             {
@@ -55,37 +50,56 @@ namespace Natillera1.Clases
             }
         }
 
+        // Método para consultar un cliente por ID
+        public Cliente Consultar(int clienteID)
+        {
+            return db.Clientes.FirstOrDefault(c => c.clienteID == clienteID);
+        }
+
         // Método para eliminar un cliente
         public string Eliminar()
         {
             try
             {
-                var clienteExistente = db.Clientes.Find(cliente.clienteID);
+                var clienteExistente = Consultar(cliente.clienteID);
                 if (clienteExistente != null)
                 {
                     db.Clientes.Remove(clienteExistente);
                     db.SaveChanges();
-                    return "Cliente eliminado correctamente.";
+                    return $"Cliente con ID {cliente.clienteID} eliminado correctamente.";
                 }
-                return "Cliente no encontrado.";
+                else
+                {
+                    return "El cliente no existe.";
+                }
             }
             catch (Exception ex)
             {
                 return $"Error al eliminar el cliente: {ex.Message}";
             }
         }
+
+        // Método para llenar el combo de clientes
+        public List<Cliente> LlenarCombo()
+        {
+            return db.Clientes
+                .OrderBy(c => c.nombre)
+                .ToList();
+        }
+
+        // Método para llenar la tabla de clientes
         public IQueryable LlenarTablaClientes()
         {
             return from c in db.Clientes
                    orderby c.nombre
                    select new
                    {
-                       ClienteID = c.clienteID,
-                       Nombre = c.nombre,
-                       Apellido =c.apellido,
-                       Identificacion = c.identificacion,
-                       Direccion = c.direccion,
-                       Telefono = c.telefono
+                       c.clienteID,
+                       c.nombre,
+                       c.apellido,
+                       c.identificacion,
+                       c.direccion,
+                       c.telefono
                    };
         }
     }

@@ -316,6 +316,7 @@
     <Compile Include="Clases\clsDeposito.cs" />
     <Compile Include="Clases\clsMulta.cs" />
     <Compile Include="Clases\clsProgresoAhorro.cs" />
+    <Compile Include="Clases\ProcesoRealizarDeposito.cs" />
     <Compile Include="Controllers\AhorroController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\DepositosController.cs" />

@@ -11,14 +11,15 @@ namespace Natillera1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using Newtonsoft.Json;
+
     public partial class Usuario
     {
         public int usuarioID { get; set; }
         public string nombreUsuario { get; set; }
         public string password { get; set; }
         public Nullable<int> rolID { get; set; }
-    
+        [JsonIgnore]
         public virtual RolesUsuario RolesUsuario { get; set; }
     }
 }

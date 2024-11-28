@@ -1,9 +1,12 @@
 ﻿using Natillera1.Clases;
 using Natillera1.Models;
+using System;
 using System.Collections.Generic;
-using System.Web.Http;
-using System.Web.Http.Cors;
+using System.IO;
 using System.Linq;
+using System.Text;
+using System.Web.Http.Cors;
+using System.Web.Http;
 
 namespace Natillera1.Controllers
 {
@@ -11,6 +14,13 @@ namespace Natillera1.Controllers
     [RoutePrefix("api/Clientes")]
     public class ClientesController : ApiController
     {
+        [HttpGet]
+        [Route("ConsultarXID")]
+        public Cliente ConsultarXID(int clienteID)
+        {
+            clsCliente cliente = new clsCliente();
+            return cliente.Consultar(clienteID);
+        }
         // Método para llenar el combo de clientes
         [HttpGet]
         [Route("LlenarCombo")]
