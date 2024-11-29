@@ -7,22 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.Text.Json.Serialization; // Asegúrate de incluir esta línea
+
 namespace Natillera1.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class PagoPrestamo
     {
         public int pagoID { get; set; }
-        public Nullable<int> prestamoID { get; set; }
-        public Nullable<int> clienteID { get; set; }
-        public System.DateTime fecha { get; set; }
+        public int? prestamoID { get; set; } // Cambié a int? para usar Nullable<int>
+        public int? clienteID { get; set; } // Cambié a int? para usar Nullable<int>
+        public DateTime fecha { get; set; }
         public decimal monto { get; set; }
-        public Nullable<System.DateTime> created_at { get; set; }
-        public Nullable<System.DateTime> updated_at { get; set; }
-    
+
+        [JsonIgnore] // Ignora esta propiedad en la serialización JSON si no deseas incluirla
         public virtual Cliente Cliente { get; set; }
+
+        [JsonIgnore] // Ignora esta propiedad en la serialización JSON si no deseas incluirla
         public virtual Prestamo Prestamo { get; set; }
     }
 }

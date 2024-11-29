@@ -11,28 +11,29 @@ namespace Natillera1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Text.Json.Serialization;
+
     public partial class Ahorro
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Ahorro()
         {
             this.Depositoes = new HashSet<Deposito>();
-            this.HistorialCambios = new HashSet<HistorialCambio>();
         }
-    
+
         public int ahorroID { get; set; }
         public Nullable<int> clienteID { get; set; }
         public decimal montoMensual { get; set; }
         public System.DateTime fechaInicial { get; set; }
-        public Nullable<System.DateTime> created_at { get; set; }
-        public Nullable<System.DateTime> updated_at { get; set; }
-    
+
+        [JsonIgnore]
         public virtual Cliente Cliente { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
         public virtual ICollection<Deposito> Depositoes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HistorialCambio> HistorialCambios { get; set; }
+
+        [JsonIgnore]
         public virtual ProgresoAhorro ProgresoAhorro { get; set; }
     }
 }

@@ -11,7 +11,8 @@ namespace Natillera1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Text.Json.Serialization; // Asegúrate de incluir esto para JsonIgnore
+
     public partial class RolesUsuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,10 +20,11 @@ namespace Natillera1.Models
         {
             this.Usuarios = new HashSet<Usuario>();
         }
-    
+
         public int rolID { get; set; }
         public string descripcion { get; set; }
-    
+
+        [JsonIgnore] // Ignora esta colección en la serialización JSON
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Usuario> Usuarios { get; set; }
     }

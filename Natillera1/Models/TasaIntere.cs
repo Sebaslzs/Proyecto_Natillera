@@ -11,7 +11,8 @@ namespace Natillera1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Text.Json.Serialization; // Asegúrate de tener esto para JsonIgnore
+
     public partial class TasaIntere
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,11 +20,11 @@ namespace Natillera1.Models
         {
             this.Prestamos = new HashSet<Prestamo>();
         }
-    
+
         public int tasaInteresID { get; set; }
-        public decimal porcentaje { get; set; }
-        public string descripcion { get; set; }
-    
+        public decimal tasa { get; set; }
+
+        [JsonIgnore] // Ignora esta propiedad para evitar referencia circular
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prestamo> Prestamos { get; set; }
     }

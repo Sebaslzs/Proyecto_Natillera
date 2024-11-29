@@ -11,16 +11,16 @@ namespace Natillera1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Text.Json.Serialization; // Asegúrate de tener esto para JsonIgnore
+
     public partial class Usuario
     {
         public int usuarioID { get; set; }
         public string nombreUsuario { get; set; }
         public string password { get; set; }
         public Nullable<int> rolID { get; set; }
-        public Nullable<System.DateTime> created_at { get; set; }
-        public Nullable<System.DateTime> updated_at { get; set; }
-    
+
+        [JsonIgnore] // Ignora esta propiedad para evitar referencia circular
         public virtual RolesUsuario RolesUsuario { get; set; }
     }
 }

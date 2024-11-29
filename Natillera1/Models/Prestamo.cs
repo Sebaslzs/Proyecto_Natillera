@@ -7,33 +7,40 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.Text.Json.Serialization; // Asegúrate de incluir esta línea
+
 namespace Natillera1.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class Prestamo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Prestamo()
         {
-            this.PagoPrestamos = new HashSet<PagoPrestamo>();
+            this.PagoPrestamoes = new HashSet<PagoPrestamo>();
         }
-    
+
         public int prestamoID { get; set; }
-        public Nullable<int> clienteID { get; set; }
-        public System.DateTime fechaSolicitud { get; set; }
+        public int? clienteID { get; set; } // Cambié a int? para usar Nullable<int>
+        public DateTime fechaSolicitud { get; set; }
         public decimal montoSolicitado { get; set; }
-        public Nullable<int> tasaInteresID { get; set; }
-        public Nullable<int> estadoPrestamoID { get; set; }
-        public Nullable<System.DateTime> created_at { get; set; }
-        public Nullable<System.DateTime> updated_at { get; set; }
-    
+        public int? tasaInteresID { get; set; } // Cambié a int? para usar Nullable<int>
+        public int? estadoPrestamoID { get; set; } // Cambié a int? para usar Nullable<int>
+
+        [JsonIgnore] // Ignora esta propiedad en la serialización JSON si no deseas incluirla
         public virtual Cliente Cliente { get; set; }
+
+        [JsonIgnore] // Ignora esta propiedad en la serialización JSON si no deseas incluirla
         public virtual EstadoPrestamo EstadoPrestamo { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PagoPrestamo> PagoPrestamos { get; set; }
+        public virtual ICollection<PagoPrestamo> PagoPrestamoes { get; set; }
+
+        [JsonIgnore] // Ignora esta propiedad en la serialización JSON si no deseas incluirla
         public virtual TasaIntere TasaIntere { get; set; }
+
+        [JsonIgnore] // Ignora esta propiedad en la serialización JSON si no deseas incluirla
         public virtual ProgresoPrestamo ProgresoPrestamo { get; set; }
     }
 }
